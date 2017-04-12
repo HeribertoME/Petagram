@@ -30,14 +30,6 @@
             android:textColor="@color/colorTextWhite"
             />
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_5_star_hotel"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="@dimen/margin_right_icon"
-            />
-
     </RelativeLayout>
 
 

@@ -1,10 +1,13 @@
 package com.hmelizarraraz.petagram;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import com.hmelizarraraz.petagram.adapter.MascotaAdaptador;
 import com.hmelizarraraz.petagram.model.Mascota;
@@ -36,6 +39,32 @@ public class MainActivity extends AppCompatActivity {
         inicializarAdaptador();
 
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_opciones, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()){
+
+            case R.id.mFav:
+
+                Intent intent = new Intent(MainActivity.this, MascotasFavoritas.class);
+                startActivity(intent);
+
+                break;
+
+            default:
+                break;
+
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
     public void inicializarMascotas(){
