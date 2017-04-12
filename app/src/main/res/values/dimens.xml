@@ -3,4 +3,7 @@
     <dimen name="toolbar_elevation">4dp</dimen>
     <dimen name="textSize_app_name">20sp</dimen>
     <dimen name="margin_right_icon">10dp</dimen>
+    <dimen name="margin_bottom_cardView">16dp</dimen>
+    <dimen name="card_corner_radius">4dp</dimen>
+    <dimen name="margin_text_cardview">10dp</dimen>
 </resources>
