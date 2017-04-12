@@ -8,18 +8,18 @@
     tools:context="com.hmelizarraraz.petagram.MascotasFavoritas">
 
     <include
-        android:id="@+id/miActionbarActivityFavs"
+        android:id="@+id/miActionbar"
         layout="@layout/actionbar"
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
         >
     </include>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="MIS MASCOTAS FAVORITAS"
-        android:layout_below="@+id/miActionbarActivityFavs"
-        android:layout_centerInParent="true"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rvMascotasFavoritas"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/miActionbar"
+        android:padding="15dp"
         />
 
 </RelativeLayout>
