@@ -50,19 +50,31 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
+        Intent intent = new Intent();
+
         switch (item.getItemId()){
 
             case R.id.mFav:
 
-                Intent intent = new Intent(MainActivity.this, MascotasFavoritas.class);
-                startActivity(intent);
+                intent = new Intent(MainActivity.this, MascotasFavoritas.class);
+                break;
 
+            case R.id.mContacto:
+
+                intent = new Intent(MainActivity.this, ContactoActivity.class);
+                break;
+
+            case R.id.mAbout:
+
+                intent = new Intent(MainActivity.this, AcercaDeActivity.class);
                 break;
 
             default:
                 break;
 
         }
+
+        startActivity(intent);
 
         return super.onOptionsItemSelected(item);
     }
