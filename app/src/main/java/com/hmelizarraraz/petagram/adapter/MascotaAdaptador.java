@@ -10,7 +10,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.hmelizarraraz.petagram.R;
-import com.hmelizarraraz.petagram.model.Mascota;
+import com.hmelizarraraz.petagram.pojo.Mascota;
 
 import java.util.ArrayList;
 

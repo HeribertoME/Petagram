@@ -1,4 +1,4 @@
-package com.hmelizarraraz.petagram.model;
+package com.hmelizarraraz.petagram.pojo;
 
 /**
  * Created by heriberto on 11/04/17.

@@ -10,7 +10,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.hmelizarraraz.petagram.adapter.MascotaAdaptador;
-import com.hmelizarraraz.petagram.model.Mascota;
+import com.hmelizarraraz.petagram.pojo.Mascota;
 
 import java.util.ArrayList;
 

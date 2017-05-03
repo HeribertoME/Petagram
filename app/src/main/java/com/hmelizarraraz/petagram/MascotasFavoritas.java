@@ -7,7 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 
 import com.hmelizarraraz.petagram.adapter.MascotaAdaptador;
-import com.hmelizarraraz.petagram.model.Mascota;
+import com.hmelizarraraz.petagram.pojo.Mascota;
 
 import java.util.ArrayList;
 
