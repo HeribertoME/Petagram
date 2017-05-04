@@ -11,7 +11,7 @@
     <string name="mail_subject">Subject</string>
     <string name="mail_message">Message</string>
     <string name="mail_send">Enviar</string>
-    
+
     <!-- Email strings -->
     <string name="email_sent">Correo enviado.</string>
     <string name="email_fail_sent">Falló el envio del correo.</string>
@@ -19,4 +19,7 @@
     <string name="auth_fail">Falló la autenticación de correo.</string>
     <string name="email_fail">Falló el correo.</string>
     <string name="unexpected_error">Ocurrió un error inesperado.</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

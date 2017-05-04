@@ -1,4 +1,4 @@
-package com.hmelizarraraz.petagram;
+package com.hmelizarraraz.petagram.mail;
 
 import java.util.Date;
 import java.util.Properties;
