@@ -84,6 +84,9 @@ public class MainActivity extends AppCompatActivity {
         viewPager.setAdapter(new PageAdapter(getSupportFragmentManager(), agregarFragment()));
         tabLayout.setupWithViewPager(viewPager);
 
+        tabLayout.getTabAt(0).setIcon(R.drawable.ic_home_tab);
+        tabLayout.getTabAt(1).setIcon(R.drawable.ic_profile_tab);
+
     }
 
     private ArrayList<Fragment> agregarFragment() {
