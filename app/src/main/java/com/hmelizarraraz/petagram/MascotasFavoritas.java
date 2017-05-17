@@ -1,5 +1,6 @@
 package com.hmelizarraraz.petagram;
 
+import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -8,14 +9,16 @@ import android.support.v7.widget.Toolbar;
 
 import com.hmelizarraraz.petagram.adapter.MascotaAdaptador;
 import com.hmelizarraraz.petagram.pojo.Mascota;
+import com.hmelizarraraz.petagram.presentador.IMascotasFavoritasPresenter;
+import com.hmelizarraraz.petagram.presentador.MascotasFavoritasPresenter;
 
 import java.util.ArrayList;
 
-public class MascotasFavoritas extends AppCompatActivity {
-
-    ArrayList<Mascota> mascotasFavoritas;
+public class MascotasFavoritas extends AppCompatActivity implements IMascotasFavoritasView{
     private Toolbar toolbar;
     private RecyclerView recyclerView;
+    private MascotaAdaptador adaptador;
+    private IMascotasFavoritasPresenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,36 +26,33 @@ public class MascotasFavoritas extends AppCompatActivity {
         setContentView(R.layout.activity_mascotas_favoritas);
 
         toolbar = (Toolbar) findViewById(R.id.miActionbar);
-        setSupportActionBar(toolbar);
-
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
         recyclerView = (RecyclerView) findViewById(R.id.rvMascotasFavoritas);
 
+        presenter = new MascotasFavoritasPresenter(this, getApplicationContext());
+    }
+
+
+    @Override
+    public void generarToolbar() {
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    }
+
+    @Override
+    public void generarLinearLayoutVertical() {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-
         recyclerView.setLayoutManager(linearLayoutManager);
-
-        inicializarMascotasFavoritas();
-        inicializarAdaptadorMascotasFavoritas();
-
     }
 
-    public void inicializarMascotasFavoritas(){
-        mascotasFavoritas = new ArrayList<Mascota>();
-
-        mascotasFavoritas.add(new Mascota(1, "Nico", 10, R.drawable.gato_2));
-        mascotasFavoritas.add(new Mascota(2, "Catty", 5, R.drawable.gato_1));
-        mascotasFavoritas.add(new Mascota(3, "Puppy", 4, R.drawable.perro_1));
-        mascotasFavoritas.add(new Mascota(4, "Feo", 2, R.drawable.perro_2));
-        mascotasFavoritas.add(new Mascota(5, "Güero", 1, R.drawable.perro_3));
+    @Override
+    public MascotaAdaptador crearAdaptador(ArrayList<Mascota> mascotas) {
+        adaptador = new MascotaAdaptador(mascotas, this);
+        return adaptador;
     }
 
-    public void inicializarAdaptadorMascotasFavoritas(){
-
-        MascotaAdaptador adaptador = new MascotaAdaptador(mascotasFavoritas, this);
+    @Override
+    public void inicializarAdaptador(MascotaAdaptador adaptador) {
         recyclerView.setAdapter(adaptador);
-
     }
 }
