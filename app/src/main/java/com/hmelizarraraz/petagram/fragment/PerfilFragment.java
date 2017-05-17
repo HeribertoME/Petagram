@@ -12,6 +12,8 @@ import android.view.ViewGroup;
 import com.hmelizarraraz.petagram.R;
 import com.hmelizarraraz.petagram.adapter.PerfilMascotaAdapter;
 import com.hmelizarraraz.petagram.pojo.Mascota;
+import com.hmelizarraraz.petagram.presentador.IPerfilFragmentPresenter;
+import com.hmelizarraraz.petagram.presentador.PerfilFragmentPresenter;
 
 import java.util.ArrayList;
 
@@ -19,11 +21,12 @@ import java.util.ArrayList;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class PerfilFragment extends Fragment {
+public class PerfilFragment extends Fragment implements IPerfilFragmentView{
 
-    private ArrayList<Mascota> mascotas;
     private RecyclerView recyclerView;
     private GridLayoutManager glm;
+    private PerfilMascotaAdapter adapter;
+    private IPerfilFragmentPresenter presenter;
 
 
     public PerfilFragment() {
@@ -39,38 +42,25 @@ public class PerfilFragment extends Fragment {
 
         recyclerView = (RecyclerView) view.findViewById(R.id.rvPerfil);
 
-        glm = new GridLayoutManager(getActivity(), 3);
-        recyclerView.setLayoutManager(glm);
-
-        inicializarMascotas();
-        inicializarAdaptador();
+        presenter = new PerfilFragmentPresenter(this, getContext());
 
         return view;
     }
 
-
-    private void inicializarMascotas() {
-        mascotas = new ArrayList<>();
-
-        mascotas.add(new Mascota(1, "Catty", 5, R.drawable.gato_2));
-        mascotas.add(new Mascota(2, "Catty", 0, R.drawable.gato_1));
-        mascotas.add(new Mascota(3, "Catty", 3, R.drawable.gato_1));
-        mascotas.add(new Mascota(4, "Catty", 10, R.drawable.gato_1));
-        mascotas.add(new Mascota(5, "Catty", 2, R.drawable.gato_2));
-        mascotas.add(new Mascota(6, "Catty", 3, R.drawable.gato_1));
-        mascotas.add(new Mascota(7, "Catty", 6, R.drawable.gato_2));
-        mascotas.add(new Mascota(8, "Catty", 7, R.drawable.gato_2));
-        mascotas.add(new Mascota(9, "Catty", 8, R.drawable.gato_1));
-        mascotas.add(new Mascota(10, "Catty", 12, R.drawable.gato_2));
-        mascotas.add(new Mascota(1, "Catty", 4, R.drawable.gato_2));
-        mascotas.add(new Mascota(12, "Catty", 1, R.drawable.gato_1));
-
+    @Override
+    public void generarGridLayout(int columnas) {
+        glm = new GridLayoutManager(getActivity(), columnas);
+        recyclerView.setLayoutManager(glm);
     }
 
+    @Override
+    public PerfilMascotaAdapter crearAdaptadorMascotasFavs(ArrayList<Mascota> mascotas) {
+        adapter = new PerfilMascotaAdapter(mascotas);
+        return adapter;
+    }
 
-    private void inicializarAdaptador() {
-        PerfilMascotaAdapter adapter = new PerfilMascotaAdapter(mascotas);
+    @Override
+    public void inicializarAdapatadorMascotasFavs(PerfilMascotaAdapter adapter) {
         recyclerView.setAdapter(adapter);
     }
-
 }

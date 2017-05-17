@@ -22,18 +22,18 @@ public class ListaMascotasFragmentPresenter implements IListaMascotasFragmentPre
     public ListaMascotasFragmentPresenter(IListaMascotasFragmentView iListaMascotasFragmentView, Context context) {
         this.iListaMascotasFragmentView = iListaMascotasFragmentView;
         this.context = context;
-        obtenerContactosBD();
+        obtenerMascotasBD();
     }
 
     @Override
-    public void obtenerContactosBD() {
+    public void obtenerMascotasBD() {
         constructorMascotas = new ConstructorMascotas(context);
         mascotas = constructorMascotas.obtenerDatos();
-        mostrarContactosRV();
+        mostrarMascotasRV();
     }
 
     @Override
-    public void mostrarContactosRV() {
+    public void mostrarMascotasRV() {
         iListaMascotasFragmentView.inicializarAdaptador(iListaMascotasFragmentView.crearAdaptador(mascotas));
         iListaMascotasFragmentView.generarLinearLayout();
     }

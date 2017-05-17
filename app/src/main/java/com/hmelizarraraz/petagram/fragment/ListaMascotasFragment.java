@@ -24,7 +24,6 @@ import java.util.ArrayList;
 public class ListaMascotasFragment extends Fragment implements IListaMascotasFragmentView{
 
     private RecyclerView listaMascotas;
-    private ArrayList<Mascota> mascotas;
     private MascotaAdaptador adaptador;
     private IListaMascotasFragmentPresenter presenter;
 
