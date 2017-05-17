@@ -1,5 +1,6 @@
 package com.hmelizarraraz.petagram.db;
 
+import android.content.ContentValues;
 import android.content.Context;
 
 import com.hmelizarraraz.petagram.R;
@@ -20,15 +21,41 @@ public class ConstructorMascotas {
     }
 
     public ArrayList<Mascota> obtenerDatos() {
-
-       ArrayList<Mascota> mascotas = new ArrayList<>();
-
-        mascotas.add(new Mascota(1, "Catty", 5, R.drawable.gato_1));
-        mascotas.add(new Mascota(2, "Nico", 10, R.drawable.gato_2));
-        mascotas.add(new Mascota(3, "Puppy", 4, R.drawable.perro_1));
-        mascotas.add(new Mascota(4, "Feo", 2, R.drawable.perro_2));
-        mascotas.add(new Mascota(5, "Güero", 1, R.drawable.perro_3));
-
-        return mascotas;
+        BaseDatos db = new BaseDatos(context);
+        insertarMascotas(db);
+        return db.obtenerMacotas();
     }
+
+    public void insertarMascotas(BaseDatos db){
+        ContentValues values = new ContentValues();
+        values.put(ConstantesBaseDatos.TABLE_MASCOTA_NOMBRE, "Catty");
+        values.put(ConstantesBaseDatos.TABLE_MASCOTA_FOTO, R.drawable.gato_1);
+
+        db.insertarMascota(values);
+
+        values = new ContentValues();
+        values.put(ConstantesBaseDatos.TABLE_MASCOTA_NOMBRE, "Nico");
+        values.put(ConstantesBaseDatos.TABLE_MASCOTA_FOTO, R.drawable.gato_2);
+
+        db.insertarMascota(values);
+
+        values = new ContentValues();
+        values.put(ConstantesBaseDatos.TABLE_MASCOTA_NOMBRE, "Puppy");
+        values.put(ConstantesBaseDatos.TABLE_MASCOTA_FOTO, R.drawable.perro_1);
+
+        db.insertarMascota(values);
+
+        values = new ContentValues();
+        values.put(ConstantesBaseDatos.TABLE_MASCOTA_NOMBRE, "Feo");
+        values.put(ConstantesBaseDatos.TABLE_MASCOTA_FOTO, R.drawable.perro_2);
+
+        db.insertarMascota(values);
+
+        values = new ContentValues();
+        values.put(ConstantesBaseDatos.TABLE_MASCOTA_NOMBRE, "Güero");
+        values.put(ConstantesBaseDatos.TABLE_MASCOTA_FOTO, R.drawable.perro_3);
+
+        db.insertarMascota(values);
+    }
+
 }

@@ -11,6 +11,9 @@ public class Mascota {
     private int rating;
     private int foto;
 
+    public Mascota() {
+    }
+
     public Mascota(int id, String nombre, int rating, int foto) {
         this.id = id;
         this.nombre = nombre;
