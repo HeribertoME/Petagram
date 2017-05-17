@@ -54,13 +54,13 @@ public class PerfilFragment extends Fragment implements IPerfilFragmentView{
     }
 
     @Override
-    public PerfilMascotaAdapter crearAdaptadorMascotasFavs(ArrayList<Mascota> mascotas) {
+    public PerfilMascotaAdapter crearAdaptadorPerfilMascota(ArrayList<Mascota> mascotas) {
         adapter = new PerfilMascotaAdapter(mascotas);
         return adapter;
     }
 
     @Override
-    public void inicializarAdapatadorMascotasFavs(PerfilMascotaAdapter adapter) {
+    public void inicializarAdapatadorPerfilMascota(PerfilMascotaAdapter adapter) {
         recyclerView.setAdapter(adapter);
     }
 }

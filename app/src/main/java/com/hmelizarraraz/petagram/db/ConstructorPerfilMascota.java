@@ -11,11 +11,11 @@ import java.util.ArrayList;
  * Created by heriberto on 17/05/17.
  */
 
-public class ConstructorMascotasFavoritas {
+public class ConstructorPerfilMascota {
 
     private Context context;
 
-    public ConstructorMascotasFavoritas(Context context) {
+    public ConstructorPerfilMascota(Context context) {
         this.context = context;
     }
 

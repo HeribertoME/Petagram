@@ -2,7 +2,7 @@ package com.hmelizarraraz.petagram.presentador;
 
 import android.content.Context;
 
-import com.hmelizarraraz.petagram.db.ConstructorMascotasFavoritas;
+import com.hmelizarraraz.petagram.db.ConstructorPerfilMascota;
 import com.hmelizarraraz.petagram.fragment.IPerfilFragmentView;
 import com.hmelizarraraz.petagram.pojo.Mascota;
 
@@ -16,25 +16,25 @@ public class PerfilFragmentPresenter implements IPerfilFragmentPresenter {
 
     private IPerfilFragmentView iPerfilFragmentView;
     private Context context;
-    private ConstructorMascotasFavoritas constructorMascotasFavoritas;
+    private ConstructorPerfilMascota constructorPerfilMascota;
     private ArrayList<Mascota> mascotas;
 
     public PerfilFragmentPresenter(IPerfilFragmentView iPerfilFragmentView, Context context) {
         this.iPerfilFragmentView = iPerfilFragmentView;
         this.context = context;
-        obtenerMascotasFavoritasBD();
+        obtenerMascotasPerfilBD();
     }
 
     @Override
-    public void obtenerMascotasFavoritasBD() {
-        constructorMascotasFavoritas = new ConstructorMascotasFavoritas(context);
-        mascotas = constructorMascotasFavoritas.obtenerDatos();
-        mostrarMascotasFavoritasRV();
+    public void obtenerMascotasPerfilBD() {
+        constructorPerfilMascota = new ConstructorPerfilMascota(context);
+        mascotas = constructorPerfilMascota.obtenerDatos();
+        mostrarMascotasPerfilRV();
     }
 
     @Override
-    public void mostrarMascotasFavoritasRV() {
-        iPerfilFragmentView.inicializarAdapatadorMascotasFavs(iPerfilFragmentView.crearAdaptadorMascotasFavs(mascotas));
+    public void mostrarMascotasPerfilRV() {
+        iPerfilFragmentView.inicializarAdapatadorPerfilMascota(iPerfilFragmentView.crearAdaptadorPerfilMascota(mascotas));
         iPerfilFragmentView.generarGridLayout(3);
     }
 }

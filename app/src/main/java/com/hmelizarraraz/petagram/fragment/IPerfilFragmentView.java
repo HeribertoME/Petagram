@@ -12,7 +12,7 @@ import java.util.ArrayList;
 public interface IPerfilFragmentView {
 
     void generarGridLayout(int columnas);
-    PerfilMascotaAdapter crearAdaptadorMascotasFavs(ArrayList<Mascota> mascotas);
-    void inicializarAdapatadorMascotasFavs(PerfilMascotaAdapter adapter);
+    PerfilMascotaAdapter crearAdaptadorPerfilMascota(ArrayList<Mascota> mascotas);
+    void inicializarAdapatadorPerfilMascota(PerfilMascotaAdapter adapter);
 
 }

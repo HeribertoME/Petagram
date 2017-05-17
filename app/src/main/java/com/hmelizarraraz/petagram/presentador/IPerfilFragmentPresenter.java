@@ -6,6 +6,6 @@ package com.hmelizarraraz.petagram.presentador;
 
 public interface IPerfilFragmentPresenter {
 
-    void obtenerMascotasFavoritasBD();
-    void mostrarMascotasFavoritasRV();
+    void obtenerMascotasPerfilBD();
+    void mostrarMascotasPerfilRV();
 }
