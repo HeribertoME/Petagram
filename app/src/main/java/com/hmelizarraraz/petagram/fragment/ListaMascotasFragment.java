@@ -12,6 +12,8 @@ import android.view.ViewGroup;
 import com.hmelizarraraz.petagram.R;
 import com.hmelizarraraz.petagram.adapter.MascotaAdaptador;
 import com.hmelizarraraz.petagram.pojo.Mascota;
+import com.hmelizarraraz.petagram.presentador.IListaMascotasFragmentPresenter;
+import com.hmelizarraraz.petagram.presentador.ListaMascotasFragmentPresenter;
 
 import java.util.ArrayList;
 
@@ -19,11 +21,12 @@ import java.util.ArrayList;
  * Created by heriberto on 03/05/17.
  */
 
-public class ListaMascotasFragment extends Fragment {
+public class ListaMascotasFragment extends Fragment implements IListaMascotasFragmentView{
 
     private RecyclerView listaMascotas;
     private ArrayList<Mascota> mascotas;
-
+    private MascotaAdaptador adaptador;
+    private IListaMascotasFragmentPresenter presenter;
 
     @Nullable
     @Override
@@ -32,31 +35,28 @@ public class ListaMascotasFragment extends Fragment {
 
         listaMascotas = (RecyclerView) view.findViewById(R.id.rvMascotas);
 
-        LinearLayoutManager llm = new LinearLayoutManager(getActivity());
-        llm.setOrientation(LinearLayoutManager.VERTICAL);
-
-        listaMascotas.setLayoutManager(llm);
-
-        inicializarMascotas();
-        inicializarAdaptador();
-
+        presenter = new ListaMascotasFragmentPresenter(this, getContext());
 
         return view;
     }
 
-    public void inicializarMascotas(){
-        mascotas = new ArrayList<Mascota>();
-        mascotas.add(new Mascota("Catty", 5, R.drawable.gato_1));
-        mascotas.add(new Mascota("Nico", 10, R.drawable.gato_2));
-        mascotas.add(new Mascota("Puppy", 4, R.drawable.perro_1));
-        mascotas.add(new Mascota("Feo", 2, R.drawable.perro_2));
-        mascotas.add(new Mascota("Güero", 1, R.drawable.perro_3));
+
+    @Override
+    public void generarLinearLayout() {
+        LinearLayoutManager llm = new LinearLayoutManager(getActivity());
+        llm.setOrientation(LinearLayoutManager.VERTICAL);
+        listaMascotas.setLayoutManager(llm);
     }
 
-    public void inicializarAdaptador(){
-        MascotaAdaptador mascotaAdaptador = new MascotaAdaptador(mascotas, getActivity());
-        listaMascotas.setAdapter(mascotaAdaptador);
+    @Override
+    public MascotaAdaptador crearAdaptador(ArrayList<Mascota> mascotas) {
+        adaptador = new MascotaAdaptador(mascotas, getActivity());
+
+        return adaptador;
     }
 
-
+    @Override
+    public void inicializarAdaptador(MascotaAdaptador mascotaAdaptador) {
+        listaMascotas.setAdapter(adaptador);
+    }
 }

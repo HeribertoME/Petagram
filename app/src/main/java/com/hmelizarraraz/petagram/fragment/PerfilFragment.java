@@ -48,23 +48,25 @@ public class PerfilFragment extends Fragment {
         return view;
     }
 
+
     private void inicializarMascotas() {
         mascotas = new ArrayList<>();
 
-        mascotas.add(new Mascota("Catty", 5, R.drawable.gato_2));
-        mascotas.add(new Mascota("Catty", 0, R.drawable.gato_1));
-        mascotas.add(new Mascota("Catty", 3, R.drawable.gato_1));
-        mascotas.add(new Mascota("Catty", 10, R.drawable.gato_1));
-        mascotas.add(new Mascota("Catty", 2, R.drawable.gato_2));
-        mascotas.add(new Mascota("Catty", 3, R.drawable.gato_1));
-        mascotas.add(new Mascota("Catty", 6, R.drawable.gato_2));
-        mascotas.add(new Mascota("Catty", 7, R.drawable.gato_2));
-        mascotas.add(new Mascota("Catty", 8, R.drawable.gato_1));
-        mascotas.add(new Mascota("Catty", 12, R.drawable.gato_2));
-        mascotas.add(new Mascota("Catty", 4, R.drawable.gato_2));
-        mascotas.add(new Mascota("Catty", 1, R.drawable.gato_1));
+        mascotas.add(new Mascota(1, "Catty", 5, R.drawable.gato_2));
+        mascotas.add(new Mascota(2, "Catty", 0, R.drawable.gato_1));
+        mascotas.add(new Mascota(3, "Catty", 3, R.drawable.gato_1));
+        mascotas.add(new Mascota(4, "Catty", 10, R.drawable.gato_1));
+        mascotas.add(new Mascota(5, "Catty", 2, R.drawable.gato_2));
+        mascotas.add(new Mascota(6, "Catty", 3, R.drawable.gato_1));
+        mascotas.add(new Mascota(7, "Catty", 6, R.drawable.gato_2));
+        mascotas.add(new Mascota(8, "Catty", 7, R.drawable.gato_2));
+        mascotas.add(new Mascota(9, "Catty", 8, R.drawable.gato_1));
+        mascotas.add(new Mascota(10, "Catty", 12, R.drawable.gato_2));
+        mascotas.add(new Mascota(1, "Catty", 4, R.drawable.gato_2));
+        mascotas.add(new Mascota(12, "Catty", 1, R.drawable.gato_1));
 
     }
+
 
     private void inicializarAdaptador() {
         PerfilMascotaAdapter adapter = new PerfilMascotaAdapter(mascotas);

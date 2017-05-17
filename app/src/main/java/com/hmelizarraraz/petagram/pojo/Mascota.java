@@ -5,11 +5,14 @@ package com.hmelizarraraz.petagram.pojo;
  */
 
 public class Mascota {
+
+    private int id;
     private String nombre;
     private int rating;
     private int foto;
 
-    public Mascota(String nombre, int rating, int foto) {
+    public Mascota(int id, String nombre, int rating, int foto) {
+        this.id = id;
         this.nombre = nombre;
         this.rating = rating;
         this.foto = foto;
@@ -37,5 +40,13 @@ public class Mascota {
 
     public void setFoto(int foto) {
         this.foto = foto;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }
