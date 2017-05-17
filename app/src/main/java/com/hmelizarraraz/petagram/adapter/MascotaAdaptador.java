@@ -10,6 +10,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.hmelizarraraz.petagram.R;
+import com.hmelizarraraz.petagram.db.ConstructorMascotas;
 import com.hmelizarraraz.petagram.pojo.Mascota;
 
 import java.util.ArrayList;
@@ -35,17 +36,20 @@ public class MascotaAdaptador extends RecyclerView.Adapter<MascotaAdaptador.Masc
     }
 
     @Override
-    public void onBindViewHolder(MascotaViewHolder holder, int position) {
+    public void onBindViewHolder(final MascotaViewHolder holder, int position) {
         final Mascota mascota = mascotas.get(position);
 
         holder.imgFotoCV.setImageResource(mascota.getFoto());
-        holder.tvNombreMascotaCV.setText(mascota.getNombre());
+        holder.tvNombreMascotaCV.setText(mascota.getNombre() + " " + mascota.getId());
         holder.tvRatingMascotaCV.setText(mascota.getRating()+"");
         
         holder.icRateMascotaCV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Toast.makeText(activity, "Liked to " + mascota.getNombre(), Toast.LENGTH_SHORT).show();
+                ConstructorMascotas constructorMascotas = new ConstructorMascotas(activity);
+                constructorMascotas.darLike(mascota);
+                holder.tvRatingMascotaCV.setText(String.valueOf(constructorMascotas.obtenerLikesMascota(mascota)));
             }
         });
 

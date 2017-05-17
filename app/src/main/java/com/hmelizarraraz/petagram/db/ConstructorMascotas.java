@@ -14,6 +14,7 @@ import java.util.ArrayList;
 
 public class ConstructorMascotas {
 
+    private static final int LIKE = 1;
     private Context context;
 
     public ConstructorMascotas(Context context) {
@@ -56,6 +57,21 @@ public class ConstructorMascotas {
         values.put(ConstantesBaseDatos.TABLE_MASCOTA_FOTO, R.drawable.perro_3);
 
         db.insertarMascota(values);
+    }
+
+    public void darLike(Mascota mascota){
+        BaseDatos db = new BaseDatos(context);
+        ContentValues contentValues = new ContentValues();
+
+        contentValues.put(ConstantesBaseDatos.TABLE_MASCOTA_LIKES_ID_MASCOTA, mascota.getId());
+        contentValues.put(ConstantesBaseDatos.TABLE_MASCOTA_LIKES_NUMERO_LIKES, LIKE);
+
+        db.insertarLikeMascota(contentValues);
+    }
+
+    public int obtenerLikesMascota(Mascota mascota) {
+        BaseDatos db = new BaseDatos(context);
+        return db.obtenerLikesMascota(mascota);
     }
 
 }
