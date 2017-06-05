@@ -39,10 +39,11 @@ public class MascotaAdaptador extends RecyclerView.Adapter<MascotaAdaptador.Masc
     public void onBindViewHolder(final MascotaViewHolder holder, int position) {
         final Mascota mascota = mascotas.get(position);
 
-        holder.imgFotoCV.setImageResource(mascota.getFoto());
-        holder.tvNombreMascotaCV.setText(mascota.getNombre() + " " + mascota.getId());
-        holder.tvRatingMascotaCV.setText(mascota.getRating()+"");
-        
+        //holder.imgFotoCV.setImageResource(mascota.getFoto());
+        //holder.tvNombreMascotaCV.setText(mascota.getNombre() + " " + mascota.getId());
+        //holder.tvRatingMascotaCV.setText(mascota.getRating()+"");
+
+        /*
         holder.icRateMascotaCV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -52,6 +53,7 @@ public class MascotaAdaptador extends RecyclerView.Adapter<MascotaAdaptador.Masc
                 holder.tvRatingMascotaCV.setText(String.valueOf(constructorMascotas.obtenerLikesMascota(mascota)));
             }
         });
+        */
 
         
 
@@ -67,7 +69,7 @@ public class MascotaAdaptador extends RecyclerView.Adapter<MascotaAdaptador.Masc
         private ImageView imgFotoCV;
         private TextView tvNombreMascotaCV;
         private TextView tvRatingMascotaCV;
-        private ImageView icRateMascotaCV;
+        //private ImageView icRateMascotaCV;
 
 
         public MascotaViewHolder(View itemView) {
@@ -75,7 +77,7 @@ public class MascotaAdaptador extends RecyclerView.Adapter<MascotaAdaptador.Masc
             imgFotoCV           = (ImageView) itemView.findViewById(R.id.imgFotoCV);
             tvNombreMascotaCV   = (TextView) itemView.findViewById(R.id.tvNombreMascotaCV);
             tvRatingMascotaCV   = (TextView) itemView.findViewById(R.id.tvRatingMascotaCV);
-            icRateMascotaCV     = (ImageView) itemView.findViewById(R.id.icRateMascotaCV);
+            //icRateMascotaCV     = (ImageView) itemView.findViewById(R.id.icRateMascotaCV);
         }
     }
 }

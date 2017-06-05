@@ -6,50 +6,50 @@ package com.hmelizarraraz.petagram.pojo;
 
 public class Mascota {
 
-    private int id;
-    private String nombre;
-    private int rating;
-    private int foto;
+    private String id;
+    private String nombreCompleto;
+    private String urlFoto;
+    private int likes;
 
     public Mascota() {
     }
 
-    public Mascota(int id, String nombre, int rating, int foto) {
+    public Mascota(String id, String nombreCompleto, String urlFoto, int likes) {
         this.id = id;
-        this.nombre = nombre;
-        this.rating = rating;
-        this.foto = foto;
+        this.nombreCompleto = nombreCompleto;
+        this.urlFoto = urlFoto;
+        this.likes = likes;
     }
 
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public int getRating() {
-        return rating;
-    }
-
-    public void setRating(int rating) {
-        this.rating = rating;
-    }
-
-    public int getFoto() {
-        return foto;
-    }
-
-    public void setFoto(int foto) {
-        this.foto = foto;
-    }
-
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
+    }
+
+    public String getNombreCompleto() {
+        return nombreCompleto;
+    }
+
+    public void setNombreCompleto(String nombreCompleto) {
+        this.nombreCompleto = nombreCompleto;
+    }
+
+    public String getUrlFoto() {
+        return urlFoto;
+    }
+
+    public void setUrlFoto(String urlFoto) {
+        this.urlFoto = urlFoto;
+    }
+
+    public int getLikes() {
+        return likes;
+    }
+
+    public void setLikes(int likes) {
+        this.likes = likes;
     }
 }
