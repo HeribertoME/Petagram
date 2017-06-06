@@ -10,15 +10,17 @@ public class Mascota {
     private String nombreCompleto;
     private String urlFoto;
     private int likes;
+    private String textoFoto;
 
     public Mascota() {
     }
 
-    public Mascota(String id, String nombreCompleto, String urlFoto, int likes) {
+    public Mascota(String id, String nombreCompleto, String urlFoto, int likes, String textoFoto) {
         this.id = id;
         this.nombreCompleto = nombreCompleto;
         this.urlFoto = urlFoto;
         this.likes = likes;
+        this.textoFoto = textoFoto;
     }
 
     public String getId() {
@@ -53,6 +55,14 @@ public class Mascota {
         this.likes = likes;
     }
 
+    public String getTextoFoto() {
+        return textoFoto;
+    }
+
+    public void setTextoFoto(String textoFoto) {
+        this.textoFoto = textoFoto;
+    }
+
     @Override
     public String toString() {
         return "Mascota{" +
@@ -60,6 +70,7 @@ public class Mascota {
                 ", nombreCompleto='" + nombreCompleto + '\'' +
                 ", urlFoto='" + urlFoto + '\'' +
                 ", likes=" + likes +
+                ", textoFoto='" + textoFoto + '\'' +
                 '}';
     }
 }
