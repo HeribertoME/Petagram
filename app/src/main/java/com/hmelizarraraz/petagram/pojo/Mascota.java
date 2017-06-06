@@ -52,4 +52,14 @@ public class Mascota {
     public void setLikes(int likes) {
         this.likes = likes;
     }
+
+    @Override
+    public String toString() {
+        return "Mascota{" +
+                "id='" + id + '\'' +
+                ", nombreCompleto='" + nombreCompleto + '\'' +
+                ", urlFoto='" + urlFoto + '\'' +
+                ", likes=" + likes +
+                '}';
+    }
 }

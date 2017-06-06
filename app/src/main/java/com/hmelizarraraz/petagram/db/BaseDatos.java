@@ -59,6 +59,7 @@ public class BaseDatos extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor registros = db.rawQuery(queryConsultarMascotas, null);
 
+        /*
         while (registros.moveToNext()) {
             Mascota mascotaActual = new Mascota();
             mascotaActual.setId(registros.getInt(0));
@@ -79,6 +80,7 @@ public class BaseDatos extends SQLiteOpenHelper {
 
             mascotas.add(mascotaActual);
         }
+        */
 
         db.close();
 
@@ -134,6 +136,7 @@ public class BaseDatos extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor registros = db.rawQuery(consultaFavs, null);
 
+        /*
         while (registros.moveToNext()){
             Mascota mascota = new Mascota();
             mascota.setId(registros.getInt(0));
@@ -143,6 +146,7 @@ public class BaseDatos extends SQLiteOpenHelper {
 
             favoritas.add(mascota);
         }
+        */
 
         db.close();
         return favoritas;

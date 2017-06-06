@@ -8,4 +8,6 @@ public interface IListaMascotasFragmentPresenter {
 
     void obtenerMascotasBD();
     void mostrarMascotasRV();
+    void obtenerFollowers();
+    void obtenerMediaFollower(String id);
 }

@@ -1,5 +1,6 @@
 package com.hmelizarraraz.petagram.restApi;
 
+import com.hmelizarraraz.petagram.restApi.model.FollowerResponse;
 import com.hmelizarraraz.petagram.restApi.model.MascotaResponse;
 
 import retrofit2.Call;
@@ -12,7 +13,7 @@ import retrofit2.http.Path;
 
 public interface EndpointsApi {
     @GET(ConstantesRestApi.URL_GET_FOLLOWED_BY)
-    Call<MascotaResponse> getFollowedBy();
+    Call<FollowerResponse> getFollowedBy();
 
     @GET(ConstantesRestApi.URL_GET_MEDIA_RECENT_USER)
     Call<MascotaResponse> getRecentMediaByUserId(@Path("user-id") String userId);

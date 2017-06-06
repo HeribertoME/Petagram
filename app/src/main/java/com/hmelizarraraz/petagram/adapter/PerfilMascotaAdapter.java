@@ -34,8 +34,8 @@ public class PerfilMascotaAdapter extends RecyclerView.Adapter<PerfilMascotaAdap
     public void onBindViewHolder(PerfilMascotaViewHolder holder, int position) {
         Mascota mascota = mascotas.get(position);
 
-        holder.imgFotoPerfilCV.setImageResource(mascota.getFoto());
-        holder.tvRatingMascotaPerfilCV.setText(mascota.getRating()+"");
+        //holder.imgFotoPerfilCV.setImageResource(mascota.getFoto());
+        //holder.tvRatingMascotaPerfilCV.setText(mascota.getRating()+"");
 
     }
 

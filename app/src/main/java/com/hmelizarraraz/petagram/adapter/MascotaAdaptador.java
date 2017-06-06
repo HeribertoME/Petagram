@@ -12,6 +12,7 @@ import android.widget.Toast;
 import com.hmelizarraraz.petagram.R;
 import com.hmelizarraraz.petagram.db.ConstructorMascotas;
 import com.hmelizarraraz.petagram.pojo.Mascota;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -40,8 +41,9 @@ public class MascotaAdaptador extends RecyclerView.Adapter<MascotaAdaptador.Masc
         final Mascota mascota = mascotas.get(position);
 
         //holder.imgFotoCV.setImageResource(mascota.getFoto());
-        //holder.tvNombreMascotaCV.setText(mascota.getNombre() + " " + mascota.getId());
-        //holder.tvRatingMascotaCV.setText(mascota.getRating()+"");
+        Picasso.with(activity).load(mascota.getUrlFoto()).into(holder.imgFotoCV);
+        holder.tvNombreMascotaCV.setText(mascota.getNombreCompleto());
+        holder.tvRatingMascotaCV.setText(String.valueOf(mascota.getLikes()));
 
         /*
         holder.icRateMascotaCV.setOnClickListener(new View.OnClickListener() {

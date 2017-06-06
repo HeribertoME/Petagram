@@ -10,6 +10,7 @@ public final class ConstantesRestApi {
     public static final String ROOT_URL = "https://api.instagram.com" + VERSION;
     public static final String ACCESS_TOKEN = "5560454415.93f9d22.378c8453d76540218d71ba1c2f37dc40";
     public static final String KEY_ACCESS_TOKEN = "?access_token=";
+    public static final String KEY_COUNT_RECENT_MEDIA = "&count=5";
 
     // Get the list this user is followed by
     public static final String KEY_GET_FOLLOWED_BY = "users/self/followed-by";
@@ -19,6 +20,6 @@ public final class ConstantesRestApi {
 
     // Get urls
     public static final String URL_GET_FOLLOWED_BY = KEY_GET_FOLLOWED_BY + KEY_ACCESS_TOKEN + ACCESS_TOKEN;
-    public static final String URL_GET_MEDIA_RECENT_USER = KEY_GET_MEDIA_RECENT_USER + KEY_ACCESS_TOKEN + ACCESS_TOKEN;
+    public static final String URL_GET_MEDIA_RECENT_USER = KEY_GET_MEDIA_RECENT_USER + KEY_ACCESS_TOKEN + ACCESS_TOKEN + KEY_COUNT_RECENT_MEDIA;
 
 }
