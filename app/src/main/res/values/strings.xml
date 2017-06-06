@@ -5,6 +5,7 @@
     <string name="rating">Rating</string>
     <string name="menu_about">Acerca de</string>
     <string name="menu_settings">Settings</string>
+    <string name="menu_configurar_cuenta">Configurar Cuenta</string>
     <string name="favoritos">Favoritos</string>
     <string name="contact">Contacto</string>
     <string name="mail_from">From:</string>
@@ -19,5 +20,6 @@
     <string name="auth_fail">Falló la autenticación de correo.</string>
     <string name="email_fail">Falló el correo.</string>
     <string name="unexpected_error">Ocurrió un error inesperado.</string>
+    <string name="escribe_usuario">Escribe tu usuario</string>
 
 </resources>

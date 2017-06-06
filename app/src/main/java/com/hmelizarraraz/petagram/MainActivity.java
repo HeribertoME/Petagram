@@ -11,6 +11,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.hmelizarraraz.petagram.adapter.MascotaAdaptador;
 import com.hmelizarraraz.petagram.adapter.PageAdapter;
@@ -68,6 +69,11 @@ public class MainActivity extends AppCompatActivity {
             case R.id.mAbout:
 
                 intent = new Intent(MainActivity.this, AcercaDeActivity.class);
+                break;
+            
+            case R.id.mConfig:
+
+                intent = new Intent(MainActivity.this, ConfiguracionActivity.class);
                 break;
 
             default:
