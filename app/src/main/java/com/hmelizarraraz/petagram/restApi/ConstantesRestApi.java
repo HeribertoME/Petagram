@@ -18,8 +18,12 @@ public final class ConstantesRestApi {
     // Get the media recent by user id
     public static final String KEY_GET_MEDIA_RECENT_USER = "users/{user-id}/media/recent/";
 
+    // Get a list of users matching the query
+    public static final String KEY_GET_SEARCH = "users/search";
+
     // Get urls
     public static final String URL_GET_FOLLOWED_BY = KEY_GET_FOLLOWED_BY + KEY_ACCESS_TOKEN + ACCESS_TOKEN;
     public static final String URL_GET_MEDIA_RECENT_USER = KEY_GET_MEDIA_RECENT_USER + KEY_ACCESS_TOKEN + ACCESS_TOKEN + KEY_COUNT_RECENT_MEDIA;
+    public static final String URL_GET_SEARCH_USER = KEY_GET_SEARCH + KEY_ACCESS_TOKEN + ACCESS_TOKEN;
 
 }

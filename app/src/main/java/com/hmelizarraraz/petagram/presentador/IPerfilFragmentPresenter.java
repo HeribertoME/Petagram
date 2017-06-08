@@ -8,4 +8,6 @@ public interface IPerfilFragmentPresenter {
 
     void obtenerMascotasPerfilBD();
     void mostrarMascotasPerfilRV();
+    void obtenerUsuarioByUsername();
+    String obtenerSharedPreference();
 }

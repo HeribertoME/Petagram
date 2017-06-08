@@ -32,6 +32,7 @@ public class ConfiguracionActivity extends AppCompatActivity implements IConfigu
             public void onClick(View v) {
                 etConfig = (EditText) findViewById(R.id.etConfig);
                 presenter.guardarPreferencia(etConfig.getText().toString());
+                finish();
             }
         });
 

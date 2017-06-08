@@ -31,6 +31,7 @@ public class ListaMascotasFragmentPresenter implements IListaMascotasFragmentPre
     private ConstructorMascotas constructorMascotas;
     private ArrayList<Mascota> mascotas;
     private ArrayList<Follower> followers;
+    private ArrayList<Mascota> listaMascotas;
 
     public ListaMascotasFragmentPresenter(IListaMascotasFragmentView iListaMascotasFragmentView, Context context) {
         this.iListaMascotasFragmentView = iListaMascotasFragmentView;
@@ -58,21 +59,20 @@ public class ListaMascotasFragmentPresenter implements IListaMascotasFragmentPre
         Gson gsonFollowers = restApiAdapter.construyeGsonDeserializadorFollowersUser();
         EndpointsApi endpointsApi = restApiAdapter.establecerConexionRestApiInstagram(gsonFollowers);
         Call<FollowerResponse> followerResponseCall = endpointsApi.getFollowedBy();
+
         followerResponseCall.enqueue(new Callback<FollowerResponse>() {
             @Override
             public void onResponse(Call<FollowerResponse> call, Response<FollowerResponse> response) {
+
                 FollowerResponse followerResponse = response.body();
                 followers = followerResponse.getFollowers();
 
                 if (followers.isEmpty()) {
                     Toast.makeText(context, "No tienes followers aún :(", Toast.LENGTH_SHORT).show();
-                    //Log.i("VACIO", "No hay followers");
                 } else {
-
-                    for (Follower follower: followers) {
-                        obtenerMediaFollower(follower.getId());
+                    for (int i = 0; i < followers.size(); i++) {
+                        obtenerMediaFollower(followers.get(i).getId());
                     }
-                    
                 }
             }
 
@@ -88,6 +88,7 @@ public class ListaMascotasFragmentPresenter implements IListaMascotasFragmentPre
 
     @Override
     public void obtenerMediaFollower(String id) {
+        mascotas = new ArrayList<>();
         RestApiAdapter restApiAdapter = new RestApiAdapter();
         Gson gsonMediaUsers = restApiAdapter.construyeGsonDeserializadorMediaUsers();
         EndpointsApi endpointsApi = restApiAdapter.establecerConexionRestApiInstagram(gsonMediaUsers);
@@ -95,9 +96,10 @@ public class ListaMascotasFragmentPresenter implements IListaMascotasFragmentPre
         mascotaResponseCall.enqueue(new Callback<MascotaResponse>() {
             @Override
             public void onResponse(Call<MascotaResponse> call, Response<MascotaResponse> response) {
+
                 MascotaResponse mascotaResponse = response.body();
-                mascotas = mascotaResponse.getMascotas();
-                Log.d("RESPUESTA", mascotas.toString());
+                listaMascotas = mascotaResponse.getMascotas();
+                agregarMascotas(listaMascotas);
                 mostrarMascotasRV();
 
             }
@@ -108,6 +110,22 @@ public class ListaMascotasFragmentPresenter implements IListaMascotasFragmentPre
                 Log.e("FALLO LA CONEXION", t.toString());
             }
         });
+    }
+
+    @Override
+    public void agregarMascotas(ArrayList<Mascota> listaMascotas) {
+
+        for (int i = 0; i < listaMascotas.size(); i++) {
+            Mascota mascotaActual = new Mascota();
+
+            mascotaActual.setUrlFoto(listaMascotas.get(i).getUrlFoto());
+            mascotaActual.setTextoFoto(listaMascotas.get(i).getTextoFoto());
+            mascotaActual.setLikes(listaMascotas.get(i).getLikes());
+
+            mascotas.add(mascotaActual);
+
+        }
 
     }
+
 }
