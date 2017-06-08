@@ -12,6 +12,7 @@
     <string name="mail_subject">Subject</string>
     <string name="mail_message">Message</string>
     <string name="mail_send">Enviar</string>
+    <string name="sin_perfil">Configurar perfil</string>
 
     <!-- Email strings -->
     <string name="email_sent">Correo enviado.</string>

@@ -1,5 +1,6 @@
 package com.hmelizarraraz.petagram.adapter;
 
+import android.app.Activity;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +10,7 @@ import android.widget.TextView;
 
 import com.hmelizarraraz.petagram.R;
 import com.hmelizarraraz.petagram.pojo.Mascota;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -19,9 +21,11 @@ import java.util.ArrayList;
 public class PerfilMascotaAdapter extends RecyclerView.Adapter<PerfilMascotaAdapter.PerfilMascotaViewHolder>{
 
     private ArrayList<Mascota> mascotas;
+    private Activity activity;
 
-    public PerfilMascotaAdapter(ArrayList<Mascota> mascotas) {
+    public PerfilMascotaAdapter(ArrayList<Mascota> mascotas, Activity activity) {
         this.mascotas = mascotas;
+        this.activity = activity;
     }
 
     @Override
@@ -35,7 +39,8 @@ public class PerfilMascotaAdapter extends RecyclerView.Adapter<PerfilMascotaAdap
         Mascota mascota = mascotas.get(position);
 
         //holder.imgFotoPerfilCV.setImageResource(mascota.getFoto());
-        //holder.tvRatingMascotaPerfilCV.setText(mascota.getRating()+"");
+        Picasso.with(activity).load(mascota.getUrlFoto()).into(holder.imgFotoPerfilCV);
+        holder.tvRatingMascotaPerfilCV.setText(String.valueOf(mascota.getLikes()));
 
     }
 

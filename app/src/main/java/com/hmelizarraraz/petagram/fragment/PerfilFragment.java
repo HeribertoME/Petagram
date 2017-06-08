@@ -8,12 +8,15 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.hmelizarraraz.petagram.R;
 import com.hmelizarraraz.petagram.adapter.PerfilMascotaAdapter;
 import com.hmelizarraraz.petagram.pojo.Mascota;
 import com.hmelizarraraz.petagram.presentador.IPerfilFragmentPresenter;
 import com.hmelizarraraz.petagram.presentador.PerfilFragmentPresenter;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -24,10 +27,11 @@ import java.util.ArrayList;
 public class PerfilFragment extends Fragment implements IPerfilFragmentView{
 
     private RecyclerView recyclerView;
+    private TextView tvNombrePerfil;
+    private ImageView imgProfile;
     private GridLayoutManager glm;
     private PerfilMascotaAdapter adapter;
     private IPerfilFragmentPresenter presenter;
-
 
     public PerfilFragment() {
         // Required empty public constructor
@@ -41,6 +45,8 @@ public class PerfilFragment extends Fragment implements IPerfilFragmentView{
         View view = inflater.inflate(R.layout.fragment_perfil, container, false);
 
         recyclerView = (RecyclerView) view.findViewById(R.id.rvPerfil);
+        tvNombrePerfil = (TextView) view.findViewById(R.id.tvNombrePerfil);
+        imgProfile = (ImageView) view.findViewById(R.id.imgProfile);
 
         presenter = new PerfilFragmentPresenter(this, getContext());
 
@@ -55,7 +61,7 @@ public class PerfilFragment extends Fragment implements IPerfilFragmentView{
 
     @Override
     public PerfilMascotaAdapter crearAdaptadorPerfilMascota(ArrayList<Mascota> mascotas) {
-        adapter = new PerfilMascotaAdapter(mascotas);
+        adapter = new PerfilMascotaAdapter(mascotas, getActivity());
         return adapter;
     }
 
@@ -63,4 +69,16 @@ public class PerfilFragment extends Fragment implements IPerfilFragmentView{
     public void inicializarAdapatadorPerfilMascota(PerfilMascotaAdapter adapter) {
         recyclerView.setAdapter(adapter);
     }
+
+    @Override
+    public void cambiarNombrePerfil(String username) {
+        tvNombrePerfil.setText(username);
+    }
+
+    @Override
+    public void cambiarFotoPerfil(String url) {
+        Picasso.with(getContext()).load(url).into(imgProfile);
+    }
+
+
 }

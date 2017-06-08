@@ -19,6 +19,9 @@ public interface EndpointsApi {
     @GET(ConstantesRestApi.URL_GET_MEDIA_RECENT_USER)
     Call<MascotaResponse> getRecentMediaByUserId(@Path("user-id") String userId);
 
+    @GET(ConstantesRestApi.URL_GET_MEDIA_RECENT_PROFILE)
+    Call<MascotaResponse> getRecentMediaProfile(@Path("user-id") String userId);
+
     @GET(ConstantesRestApi.URL_GET_SEARCH_USER)
     Call<FollowerResponse> getSearchUser(@Query("q") String username);
 }

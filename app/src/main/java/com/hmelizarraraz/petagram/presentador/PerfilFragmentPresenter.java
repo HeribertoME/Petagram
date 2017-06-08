@@ -13,6 +13,7 @@ import com.hmelizarraraz.petagram.pojo.Mascota;
 import com.hmelizarraraz.petagram.restApi.EndpointsApi;
 import com.hmelizarraraz.petagram.restApi.adapter.RestApiAdapter;
 import com.hmelizarraraz.petagram.restApi.model.FollowerResponse;
+import com.hmelizarraraz.petagram.restApi.model.MascotaResponse;
 
 import java.util.ArrayList;
 
@@ -31,13 +32,16 @@ public class PerfilFragmentPresenter implements IPerfilFragmentPresenter {
     private ConstructorPerfilMascota constructorPerfilMascota;
     private ArrayList<Mascota> mascotas;
     private ArrayList<Follower> users;
-    public static final String TAG = PerfilFragmentPresenter.class.getSimpleName();
+    private ArrayList<Mascota> listaMascotas;
+    private String userId;
+
+    public static final String TAG = "USERS";
 
     public PerfilFragmentPresenter(IPerfilFragmentView iPerfilFragmentView, Context context) {
         this.iPerfilFragmentView = iPerfilFragmentView;
         this.context = context;
         //obtenerMascotasPerfilBD();
-        obtenerUsuarioByUsername();
+        obtenerMascotasPerfilWS();
     }
 
     @Override
@@ -48,39 +52,24 @@ public class PerfilFragmentPresenter implements IPerfilFragmentPresenter {
     }
 
     @Override
-    public void mostrarMascotasPerfilRV() {
-        iPerfilFragmentView.inicializarAdapatadorPerfilMascota(iPerfilFragmentView.crearAdaptadorPerfilMascota(mascotas));
-        iPerfilFragmentView.generarGridLayout(3);
+    public void obtenerMascotasPerfilWS() {
+        boolean statusConfig = checarConfiguracion();
+        if (statusConfig){
+            String username = obtenerSharedPreference();
+            obtenerUsuarioByUsername(username);
+        }
     }
 
     @Override
-    public void obtenerUsuarioByUsername() {
-        RestApiAdapter restApiAdapter = new RestApiAdapter();
-        Gson gsonUser = restApiAdapter.construyeGsonDeserializadorFollowersUser();
-        EndpointsApi endpointsApi = restApiAdapter.establecerConexionRestApiInstagram(gsonUser);
-        Call<FollowerResponse> userResponseCall = endpointsApi.getSearchUser("32547802");
-        userResponseCall.enqueue(new Callback<FollowerResponse>() {
-            @Override
-            public void onResponse(Call<FollowerResponse> call, Response<FollowerResponse> response) {
-                FollowerResponse userResponse = response.body();
+    public boolean checarConfiguracion() {
+        SharedPreferences miUser = context.getSharedPreferences(ConfiguracionActivityPresenter.PREFERENCE, Context.MODE_PRIVATE);
+        boolean keyName = miUser.contains(ConfiguracionActivityPresenter.USERNAME);
 
-                users = userResponse.getFollowers();
-
-                if (users.isEmpty()) {
-                    mascotas = new ArrayList<Mascota>();
-                } else {
-                    //mascotas = new ArrayList<Mascota>();
-                    Log.i(TAG, "El id es: " + users.get(0).getId());
-                }
-
-            }
-
-            @Override
-            public void onFailure(Call<FollowerResponse> call, Throwable t) {
-                Toast.makeText(context, "Algo saló mal", Toast.LENGTH_SHORT).show();
-                Log.e(TAG, t.toString());
-            }
-        });
+        if (!keyName) {
+            // TODO: Cambiar por Snackbar
+            Toast.makeText(context, "Configurar perfil", Toast.LENGTH_SHORT).show();
+        }
+        return keyName;
     }
 
     @Override
@@ -89,4 +78,99 @@ public class PerfilFragmentPresenter implements IPerfilFragmentPresenter {
         String username = mUser.getString(ConfiguracionActivityPresenter.USERNAME, "jack");
         return username;
     }
+
+    @Override
+    public void obtenerUsuarioByUsername(String username) {
+        RestApiAdapter restApiAdapter = new RestApiAdapter();
+        Gson gsonUser = restApiAdapter.construyeGsonDeserializadorFollowersUser();
+        EndpointsApi endpointsApi = restApiAdapter.establecerConexionRestApiInstagram(gsonUser);
+        Call<FollowerResponse> userResponseCall = endpointsApi.getSearchUser(username);
+        userResponseCall.enqueue(new Callback<FollowerResponse>() {
+            @Override
+            public void onResponse(Call<FollowerResponse> call, Response<FollowerResponse> response) {
+                if (response.code() == 200) {
+                    FollowerResponse userResponse = response.body();
+
+                    users = userResponse.getFollowers();
+
+                    if (users.isEmpty()) {
+                        userId = "";
+                    } else {
+                        for (Follower user: users) {
+                            userId = user.getId();
+                        }
+                    }
+                } else {
+                    userId = "";
+                }
+
+                if (userId.equals("") || userId == null) {
+                    Toast.makeText(context, "El perfil no se ha configurado correctamente", Toast.LENGTH_SHORT).show();
+                } else {
+                    obtenerMediaUser(userId);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<FollowerResponse> call, Throwable t) {
+                Toast.makeText(context, "Algo saló mal", Toast.LENGTH_SHORT).show();
+                Log.e(TAG, t.toString());
+            }
+        });
+
+    }
+
+    @Override
+    public void obtenerMediaUser(String userId) {
+        mascotas = new ArrayList<>();
+        RestApiAdapter adapter = new RestApiAdapter();
+        Gson gsonMediaUsers = adapter.construyeGsonDeserializadorMediaUsers();
+        EndpointsApi endpintsApi = adapter.establecerConexionRestApiInstagram(gsonMediaUsers);
+        Call<MascotaResponse> mascotaResponseCall = endpintsApi.getRecentMediaProfile(userId);
+        mascotaResponseCall.enqueue(new Callback<MascotaResponse>() {
+            @Override
+            public void onResponse(Call<MascotaResponse> call, Response<MascotaResponse> response) {
+                MascotaResponse mascotaResponse = response.body();
+                listaMascotas = mascotaResponse.getMascotas();
+                iPerfilFragmentView.cambiarNombrePerfil(listaMascotas.get(0).getNombreCompleto());
+                iPerfilFragmentView.cambiarFotoPerfil(listaMascotas.get(0).getProfilePicture());
+
+                agregarMascotas(listaMascotas);
+                mostrarMascotasPerfilRV();
+
+            }
+
+            @Override
+            public void onFailure(Call<MascotaResponse> call, Throwable t) {
+                Toast.makeText(context, "Algo salió mal", Toast.LENGTH_SHORT).show();
+                Log.e("FALLO LA CONEXION", t.toString());
+
+            }
+        });
+        //Log.i(TAG, "Consultar media");
+        //iPerfilFragmentView.cambiarNombrePerfil("Nombrenuevo");
+
+    }
+
+    @Override
+    public void agregarMascotas(ArrayList<Mascota> listaMascotas) {
+
+        for (int i = 0; i < listaMascotas.size(); i++) {
+            Mascota mascotaActual = new Mascota();
+
+            mascotaActual.setUrlFoto(listaMascotas.get(i).getUrlFoto());
+            mascotaActual.setLikes(listaMascotas.get(i).getLikes());
+
+            mascotas.add(mascotaActual);
+        }
+
+    }
+
+    @Override
+    public void mostrarMascotasPerfilRV() {
+        iPerfilFragmentView.inicializarAdapatadorPerfilMascota(iPerfilFragmentView.crearAdaptadorPerfilMascota(mascotas));
+        iPerfilFragmentView.generarGridLayout(3);
+    }
+
+
 }

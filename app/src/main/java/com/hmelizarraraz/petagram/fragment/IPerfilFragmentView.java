@@ -14,5 +14,7 @@ public interface IPerfilFragmentView {
     void generarGridLayout(int columnas);
     PerfilMascotaAdapter crearAdaptadorPerfilMascota(ArrayList<Mascota> mascotas);
     void inicializarAdapatadorPerfilMascota(PerfilMascotaAdapter adapter);
+    void cambiarNombrePerfil(String username);
+    void cambiarFotoPerfil(String url);
 
 }
