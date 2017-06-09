@@ -2,6 +2,7 @@ package com.hmelizarraraz.petagram.fragment;
 
 
 import android.os.Bundle;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -43,12 +44,13 @@ public class PerfilFragment extends Fragment implements IPerfilFragmentView{
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_perfil, container, false);
+        View vSnack = getActivity().findViewById(android.R.id.content);
 
         recyclerView = (RecyclerView) view.findViewById(R.id.rvPerfil);
         tvNombrePerfil = (TextView) view.findViewById(R.id.tvNombrePerfil);
         imgProfile = (ImageView) view.findViewById(R.id.imgProfile);
 
-        presenter = new PerfilFragmentPresenter(this, getContext());
+        presenter = new PerfilFragmentPresenter(this, getContext(), vSnack);
 
         return view;
     }

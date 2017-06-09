@@ -1,11 +1,16 @@
 package com.hmelizarraraz.petagram.presentador;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.Snackbar;
 import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
+import com.hmelizarraraz.petagram.ConfiguracionActivity;
 import com.hmelizarraraz.petagram.db.ConstructorPerfilMascota;
 import com.hmelizarraraz.petagram.fragment.IPerfilFragmentView;
 import com.hmelizarraraz.petagram.pojo.Follower;
@@ -29,6 +34,7 @@ public class PerfilFragmentPresenter implements IPerfilFragmentPresenter {
 
     private IPerfilFragmentView iPerfilFragmentView;
     private Context context;
+    private View view;
     private ConstructorPerfilMascota constructorPerfilMascota;
     private ArrayList<Mascota> mascotas;
     private ArrayList<Follower> users;
@@ -37,9 +43,10 @@ public class PerfilFragmentPresenter implements IPerfilFragmentPresenter {
 
     public static final String TAG = "USERS";
 
-    public PerfilFragmentPresenter(IPerfilFragmentView iPerfilFragmentView, Context context) {
+    public PerfilFragmentPresenter(IPerfilFragmentView iPerfilFragmentView, Context context, View view) {
         this.iPerfilFragmentView = iPerfilFragmentView;
         this.context = context;
+        this.view = view;
         //obtenerMascotasPerfilBD();
         obtenerMascotasPerfilWS();
     }
@@ -66,8 +73,15 @@ public class PerfilFragmentPresenter implements IPerfilFragmentPresenter {
         boolean keyName = miUser.contains(ConfiguracionActivityPresenter.USERNAME);
 
         if (!keyName) {
-            // TODO: Cambiar por Snackbar
-            Toast.makeText(context, "Configurar perfil", Toast.LENGTH_SHORT).show();
+            Snackbar.make(view, "No se ha configurado un perfil.", Snackbar.LENGTH_INDEFINITE)
+                    .setAction("Configurar", new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent intent = new Intent(context, ConfiguracionActivity.class);
+                            context.startActivity(intent);
+                        }
+                    })
+                    .show();
         }
         return keyName;
     }
@@ -105,7 +119,16 @@ public class PerfilFragmentPresenter implements IPerfilFragmentPresenter {
                 }
 
                 if (userId.equals("") || userId == null) {
-                    Toast.makeText(context, "El perfil no se ha configurado correctamente", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(context, "El perfil no se ha configurado correctamente", Toast.LENGTH_SHORT).show();
+                    Snackbar.make(view, "El perfil es incorrecto.", Snackbar.LENGTH_INDEFINITE)
+                            .setAction("Configurar", new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    Intent intent = new Intent(context, ConfiguracionActivity.class);
+                                    context.startActivity(intent);
+                                }
+                            })
+                            .show();
                 } else {
                     obtenerMediaUser(userId);
                 }
