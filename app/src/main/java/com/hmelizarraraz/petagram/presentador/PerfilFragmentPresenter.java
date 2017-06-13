@@ -73,7 +73,7 @@ public class PerfilFragmentPresenter implements IPerfilFragmentPresenter {
         boolean keyName = miUser.contains(ConfiguracionActivityPresenter.USERNAME);
 
         if (!keyName) {
-            Snackbar.make(view, "No se ha configurado un perfil.", Snackbar.LENGTH_INDEFINITE)
+            Snackbar.make(view, "No se ha configurado un perfil.", Snackbar.LENGTH_LONG)
                     .setAction("Configurar", new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
@@ -120,7 +120,7 @@ public class PerfilFragmentPresenter implements IPerfilFragmentPresenter {
 
                 if (userId.equals("") || userId == null) {
                     //Toast.makeText(context, "El perfil no se ha configurado correctamente", Toast.LENGTH_SHORT).show();
-                    Snackbar.make(view, "El perfil es incorrecto.", Snackbar.LENGTH_INDEFINITE)
+                    Snackbar.make(view, "El perfil es incorrecto.", Snackbar.LENGTH_LONG)
                             .setAction("Configurar", new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {

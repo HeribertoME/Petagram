@@ -3,11 +3,13 @@ package com.hmelizarraraz.petagram.fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.hmelizarraraz.petagram.R;
 import com.hmelizarraraz.petagram.adapter.MascotaAdaptador;
@@ -25,6 +27,7 @@ public class ListaMascotasFragment extends Fragment implements IListaMascotasFra
 
     private RecyclerView listaMascotas;
     private MascotaAdaptador adaptador;
+    private SwipeRefreshLayout srlMiSwipe;
     private IListaMascotasFragmentPresenter presenter;
 
     @Nullable
@@ -33,8 +36,18 @@ public class ListaMascotasFragment extends Fragment implements IListaMascotasFra
         View view = inflater.inflate(R.layout.fragment_lista_mascotas, container, false);
 
         listaMascotas = (RecyclerView) view.findViewById(R.id.rvMascotas);
+        srlMiSwipe = (SwipeRefreshLayout) view.findViewById(R.id.srlMiSwipe);
 
         presenter = new ListaMascotasFragmentPresenter(this, getContext());
+
+        srlMiSwipe.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                //Toast.makeText(view.getContext(), "Do something", Toast.LENGTH_SHORT).show();
+                presenter.obtenerFollowers();
+                srlMiSwipe.setRefreshing(false);
+            }
+        });
 
         return view;
     }

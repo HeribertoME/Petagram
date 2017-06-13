@@ -35,7 +35,7 @@ public class ConfiguracionActivityPresenter implements IConfiguracionActivityPre
         SharedPreferences.Editor editor = mConfig.edit();
         editor.putString(USERNAME, username);
         editor.commit();
-        Toast.makeText(context, "El usuario: " + username + " se ha guardado correctamente!", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(context, "El usuario: " + username + " se ha guardado correctamente!", Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(context, MainActivity.class);
         context.startActivity(intent);
     }
