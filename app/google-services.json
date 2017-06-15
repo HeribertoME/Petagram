@@ -1,0 +1,58 @@
+{
+  "project_info": {
+    "project_number": "294821716896",
+    "firebase_url": "https://mi-petagram-hme.firebaseio.com",
+    "project_id": "mi-petagram-hme",
+    "storage_bucket": "mi-petagram-hme.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:294821716896:android:7609d81c32309dfe",
+        "android_client_info": {
+          "package_name": "com.hmelizarraraz.petagram"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "294821716896-4kn3jh80n56ao9smes671btlgulgebgl.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.hmelizarraraz.petagram",
+            "certificate_hash": "6bfad706c42044cb6b979a0152c0049d993322ad"
+          }
+        },
+        {
+          "client_id": "294821716896-lr1v0nnksjm0esjj7r76esf9e30ribc7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBKPP5pdUc7c0KATopSM815drGBYkWRHJM"
+        },
+        {
+          "current_key": "AIzaSyBQHnIsFYHm0t5Ye147laem5aq64JvqmuU"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "294821716896-lr1v0nnksjm0esjj7r76esf9e30ribc7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
