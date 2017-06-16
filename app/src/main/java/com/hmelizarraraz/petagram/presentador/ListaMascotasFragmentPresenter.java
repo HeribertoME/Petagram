@@ -138,25 +138,22 @@ public class ListaMascotasFragmentPresenter implements IListaMascotasFragmentPre
         //Toast.makeText(context, "Like a: " + idFoto, Toast.LENGTH_SHORT).show();
         RestApiAdapter restApi = new RestApiAdapter();
         Gson gsonMediaUsers = restApi.construyeGsonDeserializadorMediaUsers();
-        EndpointsApi endpointApi = restApi.establecerConexionRestApiInstagram(gsonMediaUsers);
-        Call<MascotaResponse> mascotasResponseCall = endpointApi.setLike(idFoto);
-        mascotasResponseCall.enqueue(new Callback<MascotaResponse>() {
+        EndpointsApi endpointApi = restApi.establecerConexionRestApiInstagram();
+        Call<Mascota> mascotaCall = endpointApi.setLike(idFoto);
+        mascotaCall.enqueue(new Callback<Mascota>() {
             @Override
-            public void onResponse(Call<MascotaResponse> call, Response<MascotaResponse> response) {
+            public void onResponse(Call<Mascota> call, Response<Mascota> response) {
                 if (response.code() == 200){
                     Log.i("LIKE", "Se dió like");
                 }
             }
 
             @Override
-            public void onFailure(Call<MascotaResponse> call, Throwable t) {
-                Toast.makeText(context, "Algo salió mal", Toast.LENGTH_SHORT).show();
+            public void onFailure(Call<Mascota> call, Throwable t) {
+                //Toast.makeText(context, "Algo salió mal", Toast.LENGTH_SHORT).show();
                 Log.e("ERROR", t.toString());
             }
         });
-
-
-
 
     }
 

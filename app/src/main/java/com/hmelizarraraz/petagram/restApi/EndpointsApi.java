@@ -1,5 +1,6 @@
 package com.hmelizarraraz.petagram.restApi;
 
+import com.hmelizarraraz.petagram.pojo.Mascota;
 import com.hmelizarraraz.petagram.restApi.model.FollowerResponse;
 import com.hmelizarraraz.petagram.restApi.model.MascotaResponse;
 import com.hmelizarraraz.petagram.restApi.model.UsuarioResponse;
@@ -30,7 +31,7 @@ public interface EndpointsApi {
     Call<FollowerResponse> getSearchUser(@Query("q") String username);
 
     @POST(ConstantesRestApi.URL_POST_LIKES)
-    Call<MascotaResponse> setLike(@Path("media-id") String idMedia);
+    Call<Mascota> setLike(@Path("media-id") String idMedia);
 
     @Headers({"Content-Type: application/json"})
     @POST(ConstantesRestApi.KEY_POST_REGISTRAR_USUARIO)
