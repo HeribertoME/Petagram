@@ -18,5 +18,6 @@ public interface IPerfilFragmentPresenter {
     void obtenerMediaUser(String userId);
     void agregarMascotas(ArrayList<Mascota> listaMascotas);
     void mostrarMascotasPerfilRV();
+    void guardarPreferenciaIdUser(String userId);
 
 }

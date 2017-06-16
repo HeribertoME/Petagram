@@ -1,4 +1,4 @@
-package com.hmelizarraraz.petagram;
+package com.hmelizarraraz.petagram.view;
 
 import android.os.AsyncTask;
 import android.support.design.widget.Snackbar;
@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.hmelizarraraz.petagram.R;
 import com.hmelizarraraz.petagram.mail.Mail;
 
 import javax.mail.AuthenticationFailedException;

@@ -22,5 +22,6 @@
     <string name="email_fail">Falló el correo.</string>
     <string name="unexpected_error">Ocurrió un error inesperado.</string>
     <string name="escribe_usuario">Escribe tu usuario</string>
+    <string name="recibir_notificaciones">Recibir Notificaciones</string>
 
 </resources>

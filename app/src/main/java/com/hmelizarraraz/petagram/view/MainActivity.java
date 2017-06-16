@@ -1,32 +1,35 @@
-package com.hmelizarraraz.petagram;
+package com.hmelizarraraz.petagram.view;
 
 import android.content.Intent;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
-import com.hmelizarraraz.petagram.adapter.MascotaAdaptador;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.hmelizarraraz.petagram.R;
 import com.hmelizarraraz.petagram.adapter.PageAdapter;
 import com.hmelizarraraz.petagram.fragment.ListaMascotasFragment;
 import com.hmelizarraraz.petagram.fragment.PerfilFragment;
-import com.hmelizarraraz.petagram.pojo.Mascota;
+import com.hmelizarraraz.petagram.presentador.IMainActivityPresenter;
+import com.hmelizarraraz.petagram.presentador.MainActivityPresenter;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements IMainActivity {
 
     private Toolbar toolbar;
     private TabLayout tabLayout;
     private ViewPager viewPager;
+    private IMainActivityPresenter presenter;
+    private View vSnack;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         tabLayout = (TabLayout) findViewById(R.id.tabsLayout);
         viewPager = (ViewPager) findViewById(R.id.viewPager);
+        vSnack = findViewById(android.R.id.content);
 
         setUpViewPager();
 
@@ -82,6 +86,11 @@ public class MainActivity extends AppCompatActivity {
                 finish();
                 break;
 
+            case R.id.mNotif:
+                //Toast.makeText(this, "Traer id token", Toast.LENGTH_SHORT).show();
+                presenter = new MainActivityPresenter(this, getApplicationContext(), vSnack);
+                break;
+
             default:
                 break;
 
@@ -106,6 +115,12 @@ public class MainActivity extends AppCompatActivity {
         fragments.add(new PerfilFragment());
 
         return fragments;
+    }
+
+    @Override
+    public String obtenerToken() {
+        String token = FirebaseInstanceId.getInstance().getToken();
+        return token;
     }
 
 }

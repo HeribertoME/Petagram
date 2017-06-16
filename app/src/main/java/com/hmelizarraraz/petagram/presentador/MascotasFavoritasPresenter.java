@@ -2,7 +2,7 @@ package com.hmelizarraraz.petagram.presentador;
 
 import android.content.Context;
 
-import com.hmelizarraraz.petagram.IMascotasFavoritasView;
+import com.hmelizarraraz.petagram.view.IMascotasFavoritasView;
 import com.hmelizarraraz.petagram.db.ConstructorMascotasFavoritas;
 import com.hmelizarraraz.petagram.pojo.Mascota;
 

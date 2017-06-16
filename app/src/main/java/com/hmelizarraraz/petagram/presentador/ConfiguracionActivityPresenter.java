@@ -3,10 +3,9 @@ package com.hmelizarraraz.petagram.presentador;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.widget.Toast;
 
-import com.hmelizarraraz.petagram.IConfiguracionActivityView;
-import com.hmelizarraraz.petagram.MainActivity;
+import com.hmelizarraraz.petagram.view.IConfiguracionActivityView;
+import com.hmelizarraraz.petagram.view.MainActivity;
 
 /**
  * Created by heriberto on 06/06/17.
@@ -15,6 +14,7 @@ import com.hmelizarraraz.petagram.MainActivity;
 public class ConfiguracionActivityPresenter implements IConfiguracionActivityPresenter{
     public static final String PREFERENCE = "Configuracion";
     public static final String USERNAME = "username";
+    public static final String IDUSER = "id_usuario_instagram";
     private IConfiguracionActivityView iConfiguracionActivityView;
     private Context context;
 

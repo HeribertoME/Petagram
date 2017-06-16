@@ -1,20 +1,21 @@
-package com.hmelizarraraz.petagram;
+package com.hmelizarraraz.petagram.view;
 
-import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 
+import com.hmelizarraraz.petagram.R;
 import com.hmelizarraraz.petagram.adapter.MascotaAdaptador;
 import com.hmelizarraraz.petagram.pojo.Mascota;
 import com.hmelizarraraz.petagram.presentador.IMascotasFavoritasPresenter;
 import com.hmelizarraraz.petagram.presentador.MascotasFavoritasPresenter;
+import com.hmelizarraraz.petagram.view.IMascotasFavoritasView;
 
 import java.util.ArrayList;
 
-public class MascotasFavoritas extends AppCompatActivity implements IMascotasFavoritasView{
+public class MascotasFavoritas extends AppCompatActivity implements IMascotasFavoritasView {
     private Toolbar toolbar;
     private RecyclerView recyclerView;
     private MascotaAdaptador adaptador;

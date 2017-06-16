@@ -1,7 +1,9 @@
-package com.hmelizarraraz.petagram;
+package com.hmelizarraraz.petagram.view;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.hmelizarraraz.petagram.R;
 
 public class AcercaDeActivity extends AppCompatActivity {
 

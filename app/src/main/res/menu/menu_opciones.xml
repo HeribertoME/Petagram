@@ -17,9 +17,14 @@
         android:orderInCategory="102"
         />
     <item
+        android:id="@+id/mNotif"
+        android:title="@string/recibir_notificaciones"
+        android:orderInCategory="103"
+        />
+    <item
         android:id="@+id/mFav"
         android:title="@string/favoritos"
-        android:orderInCategory="103"
+        android:orderInCategory="104"
         app:showAsAction="always"
         android:icon="@drawable/ic_5_star_hotel"
         />

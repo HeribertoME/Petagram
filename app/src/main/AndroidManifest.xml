@@ -11,7 +11,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".view.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -19,22 +19,28 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MascotasFavoritas"
-            android:parentActivityName=".MainActivity">
+            android:name=".view.MascotasFavoritas"
+            android:parentActivityName=".view.MainActivity">
 
             <!-- Soporte para versiones 4.0 o anteriores -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" />
+                android:value=".view.MainActivity" />
         </activity>
-        <activity android:name=".ContactoActivity" />
-        <activity android:name=".AcercaDeActivity" />
-        <activity android:name=".ConfiguracionActivity"
-            android:parentActivityName=".MainActivity">
+        <activity android:name=".view.ContactoActivity" />
+        <activity android:name=".view.AcercaDeActivity" />
+        <activity android:name=".view.ConfiguracionActivity"
+            android:parentActivityName=".view.MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity"/>
+                android:value=".view.MainActivity"/>
         </activity>
+        <service
+            android:name=".firebase.NotificationIDTokenService">
+            <intent-filter>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
+            </intent-filter>
+        </service>
     </application>
 
 </manifest>

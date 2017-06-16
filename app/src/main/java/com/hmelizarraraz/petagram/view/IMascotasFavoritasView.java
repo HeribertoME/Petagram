@@ -1,4 +1,4 @@
-package com.hmelizarraraz.petagram;
+package com.hmelizarraraz.petagram.view;
 
 import com.hmelizarraraz.petagram.adapter.MascotaAdaptador;
 import com.hmelizarraraz.petagram.pojo.Mascota;

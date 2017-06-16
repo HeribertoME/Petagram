@@ -12,6 +12,10 @@ public final class ConstantesRestApi {
     public static final String KEY_ACCESS_TOKEN = "?access_token=";
     public static final String KEY_COUNT_RECENT_MEDIA = "&count=5";
 
+    // Server
+    public static final String ROOT_URL_SERVER = "https://petagramhme.herokuapp.com/";
+    public static final String KEY_POST_REGISTRAR_USUARIO = "registrar-usuario/";
+
     // Get the list this user is followed by
     public static final String KEY_GET_FOLLOWED_BY = "users/self/followed-by";
 

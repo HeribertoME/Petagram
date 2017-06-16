@@ -1,4 +1,4 @@
-package com.hmelizarraraz.petagram;
+package com.hmelizarraraz.petagram.view;
 
 import android.view.View;
 

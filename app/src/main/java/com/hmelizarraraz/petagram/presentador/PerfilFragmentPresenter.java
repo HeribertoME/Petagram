@@ -3,14 +3,13 @@ package com.hmelizarraraz.petagram.presentador;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
-import com.hmelizarraraz.petagram.ConfiguracionActivity;
+import com.hmelizarraraz.petagram.view.ConfiguracionActivity;
 import com.hmelizarraraz.petagram.db.ConstructorPerfilMascota;
 import com.hmelizarraraz.petagram.fragment.IPerfilFragmentView;
 import com.hmelizarraraz.petagram.pojo.Follower;
@@ -129,8 +128,10 @@ public class PerfilFragmentPresenter implements IPerfilFragmentPresenter {
                                 }
                             })
                             .show();
+                    guardarPreferenciaIdUser(userId);
                 } else {
                     obtenerMediaUser(userId);
+                    guardarPreferenciaIdUser(userId);
                 }
             }
 
@@ -193,6 +194,14 @@ public class PerfilFragmentPresenter implements IPerfilFragmentPresenter {
     public void mostrarMascotasPerfilRV() {
         iPerfilFragmentView.inicializarAdapatadorPerfilMascota(iPerfilFragmentView.crearAdaptadorPerfilMascota(mascotas));
         iPerfilFragmentView.generarGridLayout(3);
+    }
+
+    @Override
+    public void guardarPreferenciaIdUser(String userId) {
+        SharedPreferences mIdUser = context.getSharedPreferences(ConfiguracionActivityPresenter.PREFERENCE, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = mIdUser.edit();
+        editor.putString(ConfiguracionActivityPresenter.IDUSER, userId);
+        editor.commit();
     }
 
 
