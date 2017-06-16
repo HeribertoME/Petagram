@@ -40,6 +40,10 @@ public class ListaMascotasFragmentPresenter implements IListaMascotasFragmentPre
         obtenerFollowers();
     }
 
+    public ListaMascotasFragmentPresenter(Context context) {
+        this.context = context;
+    }
+
     @Override
     public void obtenerMascotasBD() {
         constructorMascotas = new ConstructorMascotas(context);
@@ -121,10 +125,38 @@ public class ListaMascotasFragmentPresenter implements IListaMascotasFragmentPre
             mascotaActual.setUrlFoto(listaMascotas.get(i).getUrlFoto());
             mascotaActual.setTextoFoto(listaMascotas.get(i).getTextoFoto());
             mascotaActual.setLikes(listaMascotas.get(i).getLikes());
+            mascotaActual.setIdFoto(listaMascotas.get(i).getIdFoto());
 
             mascotas.add(mascotaActual);
 
         }
+
+    }
+
+    @Override
+    public void darLikeInstagram(String idFoto) {
+        //Toast.makeText(context, "Like a: " + idFoto, Toast.LENGTH_SHORT).show();
+        RestApiAdapter restApi = new RestApiAdapter();
+        Gson gsonMediaUsers = restApi.construyeGsonDeserializadorMediaUsers();
+        EndpointsApi endpointApi = restApi.establecerConexionRestApiInstagram(gsonMediaUsers);
+        Call<MascotaResponse> mascotasResponseCall = endpointApi.setLike(idFoto);
+        mascotasResponseCall.enqueue(new Callback<MascotaResponse>() {
+            @Override
+            public void onResponse(Call<MascotaResponse> call, Response<MascotaResponse> response) {
+                if (response.code() == 200){
+                    Log.i("LIKE", "Se dió like");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<MascotaResponse> call, Throwable t) {
+                Toast.makeText(context, "Algo salió mal", Toast.LENGTH_SHORT).show();
+                Log.e("ERROR", t.toString());
+            }
+        });
+
+
+
 
     }
 

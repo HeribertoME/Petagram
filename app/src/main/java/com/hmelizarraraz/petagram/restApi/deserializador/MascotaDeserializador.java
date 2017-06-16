@@ -57,7 +57,7 @@ public class MascotaDeserializador implements JsonDeserializer<MascotaResponse> 
                 textoFoto = captionJson.getAsJsonObject().get(JsonKeys.USER_MEDIA_CAPTION_TEXT).getAsString();
             }
 
-
+            String idFoto = mascotaResponseDataObject.get(JsonKeys.USER_MEDIA_ID).getAsString();
 
             Mascota mascotaActual = new Mascota();
             mascotaActual.setUrlFoto(url);
@@ -65,6 +65,7 @@ public class MascotaDeserializador implements JsonDeserializer<MascotaResponse> 
             mascotaActual.setLikes(likes);
             mascotaActual.setTextoFoto(textoFoto);
             mascotaActual.setProfilePicture(profile_picture);
+            mascotaActual.setIdFoto(idFoto);
 
             mascotas.add(mascotaActual);
         }

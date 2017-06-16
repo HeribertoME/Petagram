@@ -25,10 +25,16 @@ public final class ConstantesRestApi {
     // Get a list of users matching the query
     public static final String KEY_GET_SEARCH = "users/search";
 
+    // Set a like
+    public static final String KEY_LIKES = "media/{media-id}/likes";
+
     // Get urls
     public static final String URL_GET_FOLLOWED_BY = KEY_GET_FOLLOWED_BY + KEY_ACCESS_TOKEN + ACCESS_TOKEN;
     public static final String URL_GET_MEDIA_RECENT_USER = KEY_GET_MEDIA_RECENT_USER + KEY_ACCESS_TOKEN + ACCESS_TOKEN + KEY_COUNT_RECENT_MEDIA;
     public static final String URL_GET_MEDIA_RECENT_PROFILE = KEY_GET_MEDIA_RECENT_USER + KEY_ACCESS_TOKEN + ACCESS_TOKEN;
     public static final String URL_GET_SEARCH_USER = KEY_GET_SEARCH + KEY_ACCESS_TOKEN + ACCESS_TOKEN;
+
+    // POST urls
+    public static final String URL_POST_LIKES = KEY_LIKES + KEY_ACCESS_TOKEN + ACCESS_TOKEN;
 
 }

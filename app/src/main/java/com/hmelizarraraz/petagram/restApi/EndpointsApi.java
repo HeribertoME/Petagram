@@ -29,6 +29,9 @@ public interface EndpointsApi {
     @GET(ConstantesRestApi.URL_GET_SEARCH_USER)
     Call<FollowerResponse> getSearchUser(@Query("q") String username);
 
+    @POST(ConstantesRestApi.URL_POST_LIKES)
+    Call<MascotaResponse> setLike(@Path("media-id") String idMedia);
+
     @Headers({"Content-Type: application/json"})
     @POST(ConstantesRestApi.KEY_POST_REGISTRAR_USUARIO)
     Call<UsuarioResponse> registrarUsuario(@Body UsuarioResponse usuario);

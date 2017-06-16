@@ -15,4 +15,5 @@ public interface IListaMascotasFragmentPresenter {
     void obtenerFollowers();
     void obtenerMediaFollower(String id);
     void agregarMascotas(ArrayList<Mascota> listaMascotas);
+    void darLikeInstagram(String idFoto);
 }

@@ -12,6 +12,8 @@ import android.widget.Toast;
 import com.hmelizarraraz.petagram.R;
 import com.hmelizarraraz.petagram.db.ConstructorMascotas;
 import com.hmelizarraraz.petagram.pojo.Mascota;
+import com.hmelizarraraz.petagram.presentador.IListaMascotasFragmentPresenter;
+import com.hmelizarraraz.petagram.presentador.ListaMascotasFragmentPresenter;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -24,6 +26,7 @@ public class MascotaAdaptador extends RecyclerView.Adapter<MascotaAdaptador.Masc
 
     ArrayList<Mascota> mascotas;
     Activity activity;
+    private IListaMascotasFragmentPresenter presenter;
 
     public MascotaAdaptador(ArrayList<Mascota> mascotas, Activity activity) {
         this.mascotas = mascotas;
@@ -45,20 +48,15 @@ public class MascotaAdaptador extends RecyclerView.Adapter<MascotaAdaptador.Masc
         holder.tvNombreMascotaCV.setText(mascota.getTextoFoto());
         holder.tvRatingMascotaCV.setText(String.valueOf(mascota.getLikes()));
 
-        /*
-        holder.icRateMascotaCV.setOnClickListener(new View.OnClickListener() {
+        holder.imgRatingMascotaCV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(activity, "Liked to " + mascota.getNombre(), Toast.LENGTH_SHORT).show();
-                ConstructorMascotas constructorMascotas = new ConstructorMascotas(activity);
-                constructorMascotas.darLike(mascota);
-                holder.tvRatingMascotaCV.setText(String.valueOf(constructorMascotas.obtenerLikesMascota(mascota)));
+                //Toast.makeText(activity, "Liked to " + mascota.getIdFoto(), Toast.LENGTH_SHORT).show();
+                presenter = new ListaMascotasFragmentPresenter(activity.getApplicationContext());
+                presenter.darLikeInstagram(mascota.getIdFoto());
+                holder.tvRatingMascotaCV.setText(String.valueOf(mascota.getLikes() + 1));
             }
         });
-        */
-
-        
-
     }
 
     @Override
@@ -71,7 +69,7 @@ public class MascotaAdaptador extends RecyclerView.Adapter<MascotaAdaptador.Masc
         private ImageView imgFotoCV;
         private TextView tvNombreMascotaCV;
         private TextView tvRatingMascotaCV;
-        //private ImageView icRateMascotaCV;
+        private ImageView imgRatingMascotaCV;
 
 
         public MascotaViewHolder(View itemView) {
@@ -79,7 +77,7 @@ public class MascotaAdaptador extends RecyclerView.Adapter<MascotaAdaptador.Masc
             imgFotoCV           = (ImageView) itemView.findViewById(R.id.imgFotoCV);
             tvNombreMascotaCV   = (TextView) itemView.findViewById(R.id.tvNombreMascotaCV);
             tvRatingMascotaCV   = (TextView) itemView.findViewById(R.id.tvRatingMascotaCV);
-            //icRateMascotaCV     = (ImageView) itemView.findViewById(R.id.icRateMascotaCV);
+            imgRatingMascotaCV  = (ImageView) itemView.findViewById(R.id.imgRatingMascotaCV);
         }
     }
 }
