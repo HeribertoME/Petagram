@@ -15,6 +15,8 @@ public final class ConstantesRestApi {
     // Server
     public static final String ROOT_URL_SERVER = "https://petagramhme.herokuapp.com/";
     public static final String KEY_POST_REGISTRAR_USUARIO = "registrar-usuario/";
+    public static final String KEY_GET_USUARIOS = "usuarios";
+    public static final String KEY_REGISTRAR_LIKE = "registrar-like/";
 
     // Get the list this user is followed by
     public static final String KEY_GET_FOLLOWED_BY = "users/self/followed-by";
@@ -35,6 +37,9 @@ public final class ConstantesRestApi {
     public static final String URL_GET_SEARCH_USER = KEY_GET_SEARCH + KEY_ACCESS_TOKEN + ACCESS_TOKEN;
 
     // POST urls
+    // Like INSTAGRAM API
     public static final String URL_POST_LIKES = KEY_LIKES + KEY_ACCESS_TOKEN + ACCESS_TOKEN;
+    // Registrar like en server
+    public static final String URL_REGISTRAR_LIKES = KEY_REGISTRAR_LIKE;
 
 }

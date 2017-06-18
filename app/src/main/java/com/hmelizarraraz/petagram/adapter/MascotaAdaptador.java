@@ -7,12 +7,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.hmelizarraraz.petagram.R;
-import com.hmelizarraraz.petagram.db.ConstructorMascotas;
 import com.hmelizarraraz.petagram.pojo.Mascota;
-import com.hmelizarraraz.petagram.presentador.IListaMascotasFragmentPresenter;
+import com.hmelizarraraz.petagram.presentador.ILikePresenter;
+import com.hmelizarraraz.petagram.presentador.LikePresenter;
 import com.hmelizarraraz.petagram.presentador.ListaMascotasFragmentPresenter;
 import com.squareup.picasso.Picasso;
 
@@ -26,7 +25,7 @@ public class MascotaAdaptador extends RecyclerView.Adapter<MascotaAdaptador.Masc
 
     ArrayList<Mascota> mascotas;
     Activity activity;
-    private IListaMascotasFragmentPresenter presenter;
+    private ILikePresenter presenter;
 
     public MascotaAdaptador(ArrayList<Mascota> mascotas, Activity activity) {
         this.mascotas = mascotas;
@@ -51,10 +50,12 @@ public class MascotaAdaptador extends RecyclerView.Adapter<MascotaAdaptador.Masc
         holder.imgRatingMascotaCV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Toast.makeText(activity, "Liked to " + mascota.getIdFoto(), Toast.LENGTH_SHORT).show();
-                presenter = new ListaMascotasFragmentPresenter(activity.getApplicationContext());
-                presenter.darLikeInstagram(mascota.getIdFoto());
+                //Toast.makeText(activity, "Id user: " + mascota.getId(), Toast.LENGTH_SHORT).show();
+                presenter = new LikePresenter(activity.getApplicationContext());
+                //TODO presenter.darLikeInstagram(mascota.getIdFoto());
                 holder.tvRatingMascotaCV.setText(String.valueOf(mascota.getLikes() + 1));
+                //TODO presenter.configurarNotificacion(mascota.getId());
+                presenter.registrarLikeFirebase(mascota.getIdFoto(), mascota.getId());
             }
         });
     }

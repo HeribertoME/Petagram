@@ -6,8 +6,10 @@ import com.hmelizarraraz.petagram.restApi.ConstantesRestApi;
 import com.hmelizarraraz.petagram.restApi.EndpointsApi;
 import com.hmelizarraraz.petagram.restApi.deserializador.FollowerDeserializador;
 import com.hmelizarraraz.petagram.restApi.deserializador.MascotaDeserializador;
+import com.hmelizarraraz.petagram.restApi.deserializador.UsuarioDeserializador;
 import com.hmelizarraraz.petagram.restApi.model.FollowerResponse;
 import com.hmelizarraraz.petagram.restApi.model.MascotaResponse;
+import com.hmelizarraraz.petagram.restApi.model.UsuariosResponse;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -35,6 +37,15 @@ public class RestApiAdapter {
         return retrofit.create(EndpointsApi.class);
     }
 
+    public EndpointsApi establecerConexionServer(Gson gson) {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(ConstantesRestApi.ROOT_URL_SERVER)
+                .addConverterFactory(GsonConverterFactory.create(gson))
+                .build();
+
+        return retrofit.create(EndpointsApi.class);
+    }
+
     public EndpointsApi establecerConexionServer() {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(ConstantesRestApi.ROOT_URL_SERVER)
@@ -54,6 +65,13 @@ public class RestApiAdapter {
     public Gson construyeGsonDeserializadorMediaUsers() {
         GsonBuilder gsonBuilder = new GsonBuilder();
         gsonBuilder.registerTypeAdapter(MascotaResponse.class, new MascotaDeserializador());
+
+        return gsonBuilder.create();
+    }
+
+    public Gson construyeGsonDeserializadorUsersFirebase() {
+        GsonBuilder gsonBuilder = new GsonBuilder();
+        gsonBuilder.registerTypeAdapter(UsuariosResponse.class, new UsuarioDeserializador());
 
         return gsonBuilder.create();
     }

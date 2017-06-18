@@ -1,9 +1,13 @@
 package com.hmelizarraraz.petagram.restApi;
 
+import com.hmelizarraraz.petagram.pojo.Like;
 import com.hmelizarraraz.petagram.pojo.Mascota;
 import com.hmelizarraraz.petagram.restApi.model.FollowerResponse;
 import com.hmelizarraraz.petagram.restApi.model.MascotaResponse;
 import com.hmelizarraraz.petagram.restApi.model.UsuarioResponse;
+import com.hmelizarraraz.petagram.restApi.model.UsuariosResponse;
+
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -36,5 +40,12 @@ public interface EndpointsApi {
     @Headers({"Content-Type: application/json"})
     @POST(ConstantesRestApi.KEY_POST_REGISTRAR_USUARIO)
     Call<UsuarioResponse> registrarUsuario(@Body UsuarioResponse usuario);
+
+    @GET(ConstantesRestApi.KEY_GET_USUARIOS)
+    Call<List<UsuarioResponse>> getUsers();
+
+    @Headers({"Content-Type: application/json"})
+    @POST(ConstantesRestApi.URL_REGISTRAR_LIKES)
+    Call<Like> registrarLike(@Body Like like);
 
 }

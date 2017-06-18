@@ -4,17 +4,22 @@ import android.content.Context;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.gson.Gson;
 import com.hmelizarraraz.petagram.db.ConstructorMascotas;
 import com.hmelizarraraz.petagram.fragment.IListaMascotasFragmentView;
 import com.hmelizarraraz.petagram.pojo.Follower;
+import com.hmelizarraraz.petagram.pojo.Like;
 import com.hmelizarraraz.petagram.pojo.Mascota;
 import com.hmelizarraraz.petagram.restApi.EndpointsApi;
 import com.hmelizarraraz.petagram.restApi.adapter.RestApiAdapter;
 import com.hmelizarraraz.petagram.restApi.model.FollowerResponse;
 import com.hmelizarraraz.petagram.restApi.model.MascotaResponse;
+import com.hmelizarraraz.petagram.restApi.model.UsuarioResponse;
+import com.hmelizarraraz.petagram.restApi.model.UsuariosResponse;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -38,10 +43,6 @@ public class ListaMascotasFragmentPresenter implements IListaMascotasFragmentPre
         this.context = context;
         //obtenerMascotasBD();
         obtenerFollowers();
-    }
-
-    public ListaMascotasFragmentPresenter(Context context) {
-        this.context = context;
     }
 
     @Override
@@ -91,7 +92,7 @@ public class ListaMascotasFragmentPresenter implements IListaMascotasFragmentPre
     }
 
     @Override
-    public void obtenerMediaFollower(String id) {
+    public void obtenerMediaFollower(final String id) {
         mascotas = new ArrayList<>();
         RestApiAdapter restApiAdapter = new RestApiAdapter();
         Gson gsonMediaUsers = restApiAdapter.construyeGsonDeserializadorMediaUsers();
@@ -103,6 +104,10 @@ public class ListaMascotasFragmentPresenter implements IListaMascotasFragmentPre
 
                 MascotaResponse mascotaResponse = response.body();
                 listaMascotas = mascotaResponse.getMascotas();
+                //listaMascotas.get(0).setId(id);
+                for (Mascota mascota: listaMascotas) {
+                    mascota.setId(id);
+                }
                 agregarMascotas(listaMascotas);
                 mostrarMascotasRV();
 
@@ -126,34 +131,11 @@ public class ListaMascotasFragmentPresenter implements IListaMascotasFragmentPre
             mascotaActual.setTextoFoto(listaMascotas.get(i).getTextoFoto());
             mascotaActual.setLikes(listaMascotas.get(i).getLikes());
             mascotaActual.setIdFoto(listaMascotas.get(i).getIdFoto());
+            mascotaActual.setId(listaMascotas.get(i).getId());
 
             mascotas.add(mascotaActual);
 
         }
-
-    }
-
-    @Override
-    public void darLikeInstagram(String idFoto) {
-        //Toast.makeText(context, "Like a: " + idFoto, Toast.LENGTH_SHORT).show();
-        RestApiAdapter restApi = new RestApiAdapter();
-        Gson gsonMediaUsers = restApi.construyeGsonDeserializadorMediaUsers();
-        EndpointsApi endpointApi = restApi.establecerConexionRestApiInstagram();
-        Call<Mascota> mascotaCall = endpointApi.setLike(idFoto);
-        mascotaCall.enqueue(new Callback<Mascota>() {
-            @Override
-            public void onResponse(Call<Mascota> call, Response<Mascota> response) {
-                if (response.code() == 200){
-                    Log.i("LIKE", "Se dió like");
-                }
-            }
-
-            @Override
-            public void onFailure(Call<Mascota> call, Throwable t) {
-                //Toast.makeText(context, "Algo salió mal", Toast.LENGTH_SHORT).show();
-                Log.e("ERROR", t.toString());
-            }
-        });
 
     }
 
