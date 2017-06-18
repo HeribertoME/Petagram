@@ -24,9 +24,22 @@ import retrofit2.Response;
 
 public class LikePresenter implements ILikePresenter{
     private Context context;
+    private String idFoto;
+    private String idUser;
 
-    public LikePresenter(Context context) {
+    public LikePresenter(Context context, String idFoto, String idUser) {
         this.context = context;
+        this.idFoto = idFoto;
+        this.idUser = idUser;
+        init();
+    }
+
+
+    @Override
+    public void init() {
+        darLikeInstagram(idFoto);
+        buscarUsuario(idUser);
+        registrarLikeFirebase(idFoto, idUser);
     }
 
     @Override
@@ -69,6 +82,7 @@ public class LikePresenter implements ILikePresenter{
                     for (UsuarioResponse usuario: usuarioResponse) {
                         if (idUser.equals(usuario.getId_usuario_instagram())){
                             //TODO Log.i("INFOFIR", "Manda token: " + usuario.getId_dispositivo());
+                            enviarNotificacion(usuario.getId());
                         }
                     }
 
@@ -86,6 +100,26 @@ public class LikePresenter implements ILikePresenter{
     }
 
     @Override
+    public void enviarNotificacion(String idDispositivo) {
+        RestApiAdapter restApiAdapter = new RestApiAdapter();
+        EndpointsApi endpointsApi = restApiAdapter.establecerConexionServer();
+        Call<Like> likeCall = endpointsApi.mandarToken(idDispositivo);
+        likeCall.enqueue(new Callback<Like>() {
+            @Override
+            public void onResponse(Call<Like> call, Response<Like> response) {
+                Log.i("NOTIFICACION", "Se envió la notificación");
+            }
+
+            @Override
+            public void onFailure(Call<Like> call, Throwable t) {
+                Toast.makeText(context, "Algo salió mal.", Toast.LENGTH_SHORT).show();
+                Log.e("NOTIFICACION", "ERROR: " + t.toString());
+            }
+        });
+
+    }
+
+    @Override
     public void registrarLikeFirebase(String idFoto, String idUser) {
         String token = FirebaseInstanceId.getInstance().getToken();
 
@@ -96,10 +130,10 @@ public class LikePresenter implements ILikePresenter{
             @Override
             public void onResponse(Call<Like> call, Response<Like> response) {
                 Like likeResponse = response.body();
-                Log.i("INFOFIR", "ID: " + likeResponse.getId());
-                Log.i("INFOFIR", "ID_FOTO_INSTA: " + likeResponse.getId_foto_instagram());
-                Log.i("INFOFIR", "ID_USUARIO_INSTA: " + likeResponse.getId_usuario_instagram());
-                Log.i("INFOFIR", "ID_DISPO: " + likeResponse.getId_dispositivo());
+                Log.i("INFO", "ID: " + likeResponse.getId());
+                Log.i("INFO", "ID_FOTO_INSTA: " + likeResponse.getId_foto_instagram());
+                Log.i("INFO", "ID_USUARIO_INSTA: " + likeResponse.getId_usuario_instagram());
+                Log.i("INFO", "ID_DISPO: " + likeResponse.getId_dispositivo());
             }
 
             @Override
@@ -110,7 +144,5 @@ public class LikePresenter implements ILikePresenter{
             }
         });
     }
-
-
 
 }

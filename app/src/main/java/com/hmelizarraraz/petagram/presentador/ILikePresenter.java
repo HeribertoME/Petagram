@@ -6,7 +6,10 @@ package com.hmelizarraraz.petagram.presentador;
 
 public interface ILikePresenter {
 
+    void init();
     void darLikeInstagram(String idFoto);
     void buscarUsuario(String idUser);
+    void enviarNotificacion(String idDispositivo);
     void registrarLikeFirebase(String idFoto, String idUser);
+
 }

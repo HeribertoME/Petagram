@@ -51,11 +51,8 @@ public class MascotaAdaptador extends RecyclerView.Adapter<MascotaAdaptador.Masc
             @Override
             public void onClick(View v) {
                 //Toast.makeText(activity, "Id user: " + mascota.getId(), Toast.LENGTH_SHORT).show();
-                presenter = new LikePresenter(activity.getApplicationContext());
-                //TODO presenter.darLikeInstagram(mascota.getIdFoto());
                 holder.tvRatingMascotaCV.setText(String.valueOf(mascota.getLikes() + 1));
-                //TODO presenter.configurarNotificacion(mascota.getId());
-                presenter.registrarLikeFirebase(mascota.getIdFoto(), mascota.getId());
+                presenter = new LikePresenter(activity.getApplicationContext(), mascota.getIdFoto(), mascota.getId());
             }
         });
     }

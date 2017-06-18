@@ -48,4 +48,7 @@ public interface EndpointsApi {
     @POST(ConstantesRestApi.URL_REGISTRAR_LIKES)
     Call<Like> registrarLike(@Body Like like);
 
+    @GET(ConstantesRestApi.KEY_TOKEN_LIKE)
+    Call<Like> mandarToken(@Path("token") String token);
+
 }

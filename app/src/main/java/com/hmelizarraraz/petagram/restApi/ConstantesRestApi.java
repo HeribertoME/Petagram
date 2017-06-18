@@ -17,6 +17,7 @@ public final class ConstantesRestApi {
     public static final String KEY_POST_REGISTRAR_USUARIO = "registrar-usuario/";
     public static final String KEY_GET_USUARIOS = "usuarios";
     public static final String KEY_REGISTRAR_LIKE = "registrar-like/";
+    public static final String KEY_TOKEN_LIKE = "like/{token}/";
 
     // Get the list this user is followed by
     public static final String KEY_GET_FOLLOWED_BY = "users/self/followed-by";

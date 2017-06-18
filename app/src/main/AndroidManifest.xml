@@ -36,6 +36,12 @@
                 android:value=".view.MainActivity"/>
         </activity>
         <service
+            android:name=".firebase.NotificationService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+            </intent-filter>
+        </service>
+        <service
             android:name=".firebase.NotificationIDTokenService">
             <intent-filter>
                 <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
