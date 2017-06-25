@@ -46,6 +46,11 @@ public class MainActivity extends AppCompatActivity implements IMainActivity {
         if (toolbar != null) {
             setSupportActionBar(toolbar);
         }
+
+        if (getIntent().getStringExtra("notification") != null) {
+            viewPager.setCurrentItem(1);
+        }
+
     }
 
     @Override
@@ -83,7 +88,7 @@ public class MainActivity extends AppCompatActivity implements IMainActivity {
 
                 intent = new Intent(MainActivity.this, ConfiguracionActivity.class);
                 startActivity(intent);
-                finish();
+                //finish();
                 break;
 
             case R.id.mNotif:

@@ -45,6 +45,7 @@ public class LikePresenter implements ILikePresenter{
     @Override
     public void darLikeInstagram(String idFoto) {
         //Toast.makeText(context, "Like a: " + idFoto, Toast.LENGTH_SHORT).show();
+        Log.i("IDFOTO", " " + idFoto);
         RestApiAdapter restApi = new RestApiAdapter();
         Gson gsonMediaUsers = restApi.construyeGsonDeserializadorMediaUsers();
         EndpointsApi endpointApi = restApi.establecerConexionRestApiInstagram();
@@ -52,6 +53,7 @@ public class LikePresenter implements ILikePresenter{
         mascotaCall.enqueue(new Callback<Mascota>() {
             @Override
             public void onResponse(Call<Mascota> call, Response<Mascota> response) {
+                Log.i("LIKE", "Resp: " + response);
                 if (response.code() == 200){
                     Log.i("LIKE", "Se dió like");
                 }
@@ -60,7 +62,7 @@ public class LikePresenter implements ILikePresenter{
             @Override
             public void onFailure(Call<Mascota> call, Throwable t) {
                 //Toast.makeText(context, "Algo salió mal", Toast.LENGTH_SHORT).show();
-                Log.e("ERROR", t.toString());
+                Log.e("ERROR_LIKE", t.toString());
             }
         });
 
@@ -81,7 +83,6 @@ public class LikePresenter implements ILikePresenter{
 
                     for (UsuarioResponse usuario: usuarioResponse) {
                         if (idUser.equals(usuario.getId_usuario_instagram())){
-                            //TODO Log.i("INFOFIR", "Manda token: " + usuario.getId_dispositivo());
                             enviarNotificacion(usuario.getId());
                         }
                     }
@@ -130,10 +131,10 @@ public class LikePresenter implements ILikePresenter{
             @Override
             public void onResponse(Call<Like> call, Response<Like> response) {
                 Like likeResponse = response.body();
-                Log.i("INFO", "ID: " + likeResponse.getId());
-                Log.i("INFO", "ID_FOTO_INSTA: " + likeResponse.getId_foto_instagram());
-                Log.i("INFO", "ID_USUARIO_INSTA: " + likeResponse.getId_usuario_instagram());
-                Log.i("INFO", "ID_DISPO: " + likeResponse.getId_dispositivo());
+                //Log.i("INFO", "ID: " + likeResponse.getId());
+                //Log.i("INFO", "ID_FOTO_INSTA: " + likeResponse.getId_foto_instagram());
+                //Log.i("INFO", "ID_USUARIO_INSTA: " + likeResponse.getId_usuario_instagram());
+                //Log.i("INFO", "ID_DISPO: " + likeResponse.getId_dispositivo());
             }
 
             @Override
