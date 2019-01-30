@@ -79,7 +79,7 @@ public class PerfilFragment extends Fragment implements IPerfilFragmentView{
 
     @Override
     public void cambiarFotoPerfil(String url) {
-        Picasso.with(getContext()).load(url).into(imgProfile);
+        Picasso.get().load(url).into(imgProfile);
     }
 
 

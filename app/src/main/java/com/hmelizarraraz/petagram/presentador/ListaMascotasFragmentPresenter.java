@@ -70,15 +70,22 @@ public class ListaMascotasFragmentPresenter implements IListaMascotasFragmentPre
             public void onResponse(Call<FollowerResponse> call, Response<FollowerResponse> response) {
 
                 FollowerResponse followerResponse = response.body();
-                followers = followerResponse.getFollowers();
 
-                if (followers.isEmpty()) {
-                    Toast.makeText(context, "No tienes followers aún :(", Toast.LENGTH_SHORT).show();
-                } else {
-                    for (int i = 0; i < followers.size(); i++) {
-                        obtenerMediaFollower(followers.get(i).getId());
+                if (followerResponse != null) {
+                    followers = followerResponse.getFollowers();
+
+                    if (followers.isEmpty()) {
+                        Toast.makeText(context, "No tienes followers aún :(", Toast.LENGTH_SHORT).show();
+                    } else {
+                        for (int i = 0; i < followers.size(); i++) {
+                            obtenerMediaFollower(followers.get(i).getId());
+                        }
                     }
+
+                } else {
+                    Toast.makeText(context, "No tienes followers aún :(", Toast.LENGTH_SHORT).show();
                 }
+
             }
 
             @Override
